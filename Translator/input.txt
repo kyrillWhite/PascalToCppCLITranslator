@@ -1,0 +1,21 @@
+begin
+	var a,b,c: integer;
+
+	a := 3;
+	b := 5;
+	c := 4;
+
+	var t := a;
+
+	a := b;
+	b := t;
+
+	var v := a;
+
+	a := b;
+	b := c;
+	c := t;
+
+	var name := 'Peter';
+	var age := 10;
+end.
