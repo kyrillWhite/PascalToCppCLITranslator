@@ -3,6 +3,9 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <vector>
+
+#include "CError.h"
 
 class CIO
 {
@@ -12,8 +15,9 @@ private:
 
     int lineNumber = 0;
     int symbolNumber = 0;
+    std::string buffer; 
 
-    std::string buffer;
+    std::vector<std::unique_ptr<CError>> errors;
 
     bool IsEndOfInput();
     void ReadString();
@@ -25,4 +29,6 @@ public:
     CIO(std::string input, std::ofstream &output);
     ~CIO();
     bool GetNextChar(char &ch);
+    void AddError(ErrorType eType);
+    void PrintErrors();
 };

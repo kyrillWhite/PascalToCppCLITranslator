@@ -56,3 +56,16 @@ bool CIO::GetNextChar(char& ch)
     ch = buffer[symbolNumber++];
     return !IsEndOfInput();
 }
+
+void CIO::AddError(ErrorType eType)
+{
+    errors.push_back(make_unique<CError>(lineNumber, symbolNumber, eType));
+}
+
+void CIO::PrintErrors()
+{
+    for (auto &error : errors) {
+        *outputStream << "(" << error->GetLineNum() << ", "
+            << error->GetSymbolNum() << ") " << error->GetText() << endl;
+    }
+}

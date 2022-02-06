@@ -16,9 +16,18 @@
     <ClCompile Include="CIO.cpp">
       <Filter>Translator\Modules\IO</Filter>
     </ClCompile>
+    <ClCompile Include="CError.cpp">
+      <Filter>Translator\Modules\IO</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CIO.h">
+      <Filter>Translator\Modules\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="CError.h">
+      <Filter>Translator\Modules\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="EErrorType.h">
       <Filter>Translator\Modules\IO</Filter>
     </ClInclude>
   </ItemGroup>
