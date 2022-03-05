@@ -139,14 +139,39 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CBooleanVariant.cpp" />
+    <ClCompile Include="CConstToken.cpp" />
+    <ClCompile Include="CEmptyToken.cpp" />
     <ClCompile Include="CError.cpp" />
+    <ClCompile Include="CIdentToken.cpp" />
+    <ClCompile Include="CIntVariant.cpp" />
     <ClCompile Include="CIO.cpp" />
+    <ClCompile Include="CKeyWordToken.cpp" />
+    <ClCompile Include="CLexer.cpp" />
+    <ClCompile Include="CRealVariant.cpp" />
+    <ClCompile Include="CStringVariant.cpp" />
+    <ClCompile Include="CToken.cpp" />
+    <ClCompile Include="CVariant.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CBooleanVariant.h" />
+    <ClInclude Include="CConstToken.h" />
+    <ClInclude Include="CEmptyToken.h" />
     <ClInclude Include="CError.h" />
+    <ClInclude Include="CIdentToken.h" />
+    <ClInclude Include="CIntVariant.h" />
     <ClInclude Include="CIO.h" />
+    <ClInclude Include="CKeyWordToken.h" />
+    <ClInclude Include="CLexer.h" />
+    <ClInclude Include="CRealVariant.h" />
+    <ClInclude Include="CStringVariant.h" />
+    <ClInclude Include="CToken.h" />
+    <ClInclude Include="CVariant.h" />
     <ClInclude Include="EErrorType.h" />
+    <ClInclude Include="EKeyWordType.h" />
+    <ClInclude Include="ETokenType.h" />
+    <ClInclude Include="EVariantType.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

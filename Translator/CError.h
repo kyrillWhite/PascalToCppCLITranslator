@@ -8,10 +8,10 @@ class CError
 private:
     int lineNumber;
     int symbolNumber;
-    ErrorType eType;
+    EErrorType eType;
 
 public:
-    CError(int _lineNumber, int _symbolNumber, ErrorType _eType);
+    CError(int _lineNumber, int _symbolNumber, EErrorType _eType);
     int GetLineNum();
     int GetSymbolNum();
     std::string GetText();
