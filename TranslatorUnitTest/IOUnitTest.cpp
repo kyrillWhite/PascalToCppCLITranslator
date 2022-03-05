@@ -23,8 +23,12 @@ namespace TranslatorUnitTest
 			auto IO = make_unique<CIO>(input);
 			char ch = IO->GetNextChar();
 			Assert::AreEqual(ch, 't');
-			IO->AddError(e6);
-			IO->PrintErrors();
+			try {
+				IO->AddError(e6);
+			}
+			catch (...) {
+				IO->PrintErrors();
+			}
 			string output = IO->GetOutputString();
 			Assert::AreEqual(output.c_str(), "Запрещенный символ (стр 1, стлб 1)\n");
 			input.close();
@@ -35,7 +39,10 @@ namespace TranslatorUnitTest
 			auto IO = make_unique<CIO>(input);
 			char ch = IO->GetNextChar();
 			Assert::AreEqual(ch, 't');
-			IO->AddError(e6);
+			try {
+				IO->AddError(e6);
+			}
+			catch (...) { }
 			IO->PrintErrors();
 			string output = IO->GetOutputString();
 			Assert::AreEqual(output.c_str(), "Запрещенный символ (стр 1, стлб 1)\n");
@@ -47,7 +54,10 @@ namespace TranslatorUnitTest
 			auto IO = make_unique<CIO>(input, output);
 			char ch = IO->GetNextChar();
 			Assert::AreEqual(ch, 't');
-			IO->AddError(e6);
+			try {
+				IO->AddError(e6);
+			}
+			catch (...) { }
 			IO->PrintErrors();
 			output.close();
 			ifstream outputResIn(CURRENT_DIRECTORY + "tests/IO/output1.txt");
@@ -64,7 +74,10 @@ namespace TranslatorUnitTest
 			auto IO = make_unique<CIO>(input, output);
 			char ch = IO->GetNextChar();
 			Assert::AreEqual(ch, 't');
-			IO->AddError(e6);
+			try {
+				IO->AddError(e6);
+			}
+			catch (...) { }
 			IO->PrintErrors();
 			output.close();
 			ifstream outputResIn(CURRENT_DIRECTORY + "tests/IO/output1.txt");
@@ -87,8 +100,14 @@ namespace TranslatorUnitTest
 		TEST_METHOD(PrintErrors) {
 			string input("");
 			auto IO = make_unique<CIO>(input);
-			IO->AddError(e6);
-			IO->AddError(e75);
+			try {
+				IO->AddError(e6);
+			}
+			catch (...) { }
+			try {
+				IO->AddError(e75);
+			}
+			catch (...) {}
 			IO->PrintErrors();
 			string output = IO->GetOutputString();
 			Assert::AreEqual(output.c_str(), "Запрещенный символ (стр 0, стлб 0)\nОшибка в символьной константе (стр 0, стлб 0)\n");

@@ -39,10 +39,6 @@ CIO* CLexer::GetIOPtr()
 
 unique_ptr<CToken> CLexer::GetNextToken()
 {
-    if (IO->IsEndOfInput()) {
-        return make_unique<CEmptyToken>();
-    }
-
     switch (ch) {
     case '*':
         ch = IO->GetNextChar();
@@ -99,7 +95,6 @@ unique_ptr<CToken> CLexer::GetNextToken()
             while (tCh != '*' || ch != ')') {
                 if (IO->IsEndOfInput()) {
                     IO->AddError(e86);
-                    return make_unique<CEmptyToken>();
                 }
                 tCh = ch;
                 ch = IO->GetNextChar();
@@ -117,7 +112,6 @@ unique_ptr<CToken> CLexer::GetNextToken()
         while (ch != '}') {
             if (IO->IsEndOfInput()) {
                 IO->AddError(e86);
-                return make_unique<CEmptyToken>();
             }
             ch = IO->GetNextChar();
         }
@@ -163,14 +157,12 @@ unique_ptr<CToken> CLexer::GetNextToken()
         while (ch != '\'') {
             if (ch == '\n' || IO->IsEndOfInput()) {
                 IO->AddError(e77);
-                return make_unique<CEmptyToken>();
             }
             constStr += ch;
             ch = IO->GetNextChar();
         }
         if (constStr == "") {
             IO->AddError(e75);
-            return make_unique<CEmptyToken>();
         }
         ch = IO->GetNextChar();
         return make_unique<CConstToken>(make_unique<CStringVariant>(constStr));
@@ -209,7 +201,6 @@ unique_ptr<CToken> CLexer::GetNextToken()
                 if (ch == '.') {
                     if (hasDot) {
                         IO->AddError(e201);
-                        return make_unique<CConstToken>(make_unique<CIntVariant>(0));
                     }
                     hasDot = true;
                 }
@@ -231,7 +222,6 @@ unique_ptr<CToken> CLexer::GetNextToken()
                     else {
                         IO->AddError(e207);
                     }
-                    return make_unique<CConstToken>(make_unique<CIntVariant>(0));
                 }
             }
             else {
@@ -239,13 +229,11 @@ unique_ptr<CToken> CLexer::GetNextToken()
                     int iNum = stoi(num);
                     if (iNum > 2147483647) {
                         IO->AddError(e203);
-                        return make_unique<CConstToken>(make_unique<CIntVariant>(0));
                     }
                     return make_unique<CConstToken>(make_unique<CIntVariant>(iNum));
                 }
                 catch (...) {
                     IO->AddError(e203);
-                    return make_unique<CConstToken>(make_unique<CIntVariant>(0));
                 }
             }
         }
@@ -253,6 +241,9 @@ unique_ptr<CToken> CLexer::GetNextToken()
             ch == '\r' || ch == '\v' || ch == '\0') {
             while (ch == ' ' || ch == '\n' || ch == '\t' || ch == '\f' ||
                 ch == '\r' || ch == '\v' || ch == '\0') {
+                if (IO->IsEndOfInput()) {
+                    return make_unique<CEmptyToken>();
+                }
                 ch = IO->GetNextChar();
             }
             return GetNextToken();
@@ -260,7 +251,6 @@ unique_ptr<CToken> CLexer::GetNextToken()
         else {
             ch = IO->GetNextChar();
             IO->AddError(e6);
-            return make_unique<CEmptyToken>();
         }
     }
 }

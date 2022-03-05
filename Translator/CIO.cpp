@@ -60,6 +60,7 @@ char CIO::GetNextChar()
 void CIO::AddError(EErrorType eType)
 {
     errors.push_back(make_unique<CError>(lineNumber, symbolNumber, eType));
+    throw errors[errors.size() - 1].get();
 }
 
 void CIO::PrintErrors()

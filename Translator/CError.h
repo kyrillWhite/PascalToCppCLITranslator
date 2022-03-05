@@ -1,9 +1,10 @@
 #pragma once
 #include <string>
+#include <exception>
 
 #include "EErrorType.h"
 
-class CError
+class CError : public std::exception
 {
 private:
     int lineNumber;
