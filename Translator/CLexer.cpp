@@ -168,6 +168,10 @@ unique_ptr<CToken> CLexer::GetNextToken()
             constStr += ch;
             ch = IO->GetNextChar();
         }
+        if (constStr == "") {
+            IO->AddError(e75);
+            return make_unique<CEmptyToken>();
+        }
         ch = IO->GetNextChar();
         return make_unique<CConstToken>(make_unique<CStringVariant>(constStr));
     }

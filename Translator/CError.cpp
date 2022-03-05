@@ -20,6 +20,8 @@ string CError::GetText()
     switch (eType) {
     case e6:
         return "Запрещенный символ";
+    case e75:
+        return "Ошибка в символьной константе";
     case e77:
         return "Строковая константа не закрыта";
     case e86:

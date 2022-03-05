@@ -3,7 +3,7 @@ program ProG;
 	var t, v: integer;
 	var age: real;
 	var name: string;
-begin
+$begin
 
 	a := 3000000;
 	//b := 5;
@@ -20,6 +20,6 @@ begin
 	(*b := c;
 	c := t;*)
 
-	name := 'Peter';
+	name := '';
 	age := 10.9;
 end.

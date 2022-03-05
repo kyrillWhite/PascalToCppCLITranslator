@@ -45,16 +45,16 @@ CIO::~CIO()
 char CIO::GetNextChar()
 {
     while (symbolNumber == buffer.size()) {
+        if (inputStream->eof()) {
+            buffer = "";
+            symbolNumber = 0;
+            return ' ';
+        }
         ReadString();
         lineNumber++;
         symbolNumber = 0;
     }
-    if (IsEndOfInput()) {
-        return ' ';
-    }
-    else {
-        return buffer[symbolNumber++];
-    }
+    return buffer[symbolNumber++];
 }
 
 void CIO::AddError(EErrorType eType)
@@ -72,7 +72,7 @@ void CIO::PrintErrors()
 
 bool CIO::IsEndOfInput()
 {
-    return (*inputStream).eof() && symbolNumber == buffer.size();
+    return inputStream->eof() && buffer == "";
 }
 
 std::string CIO::GetOutputString()

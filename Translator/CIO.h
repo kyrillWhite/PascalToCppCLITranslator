@@ -24,7 +24,7 @@ private:
     void ReadString();
 
 public:
-    CIO(std::ifstream& input);
+    CIO(std::ifstream &input);
     CIO(std::string input);
     CIO(std::ifstream &input, std::ostream &output);
     CIO(std::string input, std::ostream &output);
