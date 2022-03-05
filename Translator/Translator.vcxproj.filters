@@ -22,12 +22,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="CIO.cpp">
-      <Filter>Translator\Modules\IO</Filter>
-    </ClCompile>
-    <ClCompile Include="CError.cpp">
-      <Filter>Translator\Modules\IO</Filter>
-    </ClCompile>
     <ClCompile Include="CLexer.cpp">
       <Filter>Translator\Modules\Lexer</Filter>
     </ClCompile>
@@ -60,6 +54,12 @@
     </ClCompile>
     <ClCompile Include="CEmptyToken.cpp">
       <Filter>Translator\Modules\Lexer\Token</Filter>
+    </ClCompile>
+    <ClCompile Include="CIO.cpp">
+      <Filter>Translator\Modules\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="CError.cpp">
+      <Filter>Translator\Modules\IO</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
