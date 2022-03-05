@@ -2,8 +2,10 @@
 #include <istream>
 #include <fstream>
 #include <sstream>
+#include <iostream>
 #include <string>
 #include <vector>
+#include <memory>
 
 #include "CError.h"
 
@@ -19,16 +21,18 @@ private:
 
     std::vector<std::unique_ptr<CError>> errors;
 
-    bool IsEndOfInput();
     void ReadString();
 
 public:
-    CIO(std::ifstream &input);
+    CIO(std::ifstream& input);
     CIO(std::string input);
-    CIO(std::ifstream &input, std::ofstream &output);
-    CIO(std::string input, std::ofstream &output);
+    CIO(std::ifstream &input, std::ostream &output);
+    CIO(std::string input, std::ostream &output);
     ~CIO();
-    bool GetNextChar(char &ch);
-    void AddError(ErrorType eType);
+
+    char GetNextChar();
+    void AddError(EErrorType eType);
     void PrintErrors();
+    bool IsEndOfInput();
+    std::string GetOutputString();
 };

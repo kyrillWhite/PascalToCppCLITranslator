@@ -1,21 +1,25 @@
+program ProG;
+	var a, b, c: integer;
+	var t, v: integer;
+	var age: real;
+	var name: string;
 begin
-	var a,b,c: integer;
 
-	a := 3;
-	b := 5;
+	a := 3000000;
+	//b := 5;
 	c := 4;
 
-	var t := a;
+	t := a;
+
+	{a := b;
+	b := t;}
+
+	v := a;
 
 	a := b;
-	b := t;
+	(*b := c;
+	c := t;*)
 
-	var v := a;
-
-	a := b;
-	b := c;
-	c := t;
-
-	var name := 'Peter';
-	var age := 10;
+	name := 'Peter';
+	age := 10.9;
 end.

@@ -5,32 +5,28 @@ using namespace std;
 void CIO::ReadString()
 {
     getline(*inputStream, buffer);
+    buffer += '\n';
 }
 
-bool CIO::IsEndOfInput()
-{
-    return (*inputStream).eof() && symbolNumber == buffer.size();
-}
-
-CIO::CIO(std::ifstream &input)
+CIO::CIO(std::ifstream& input)
 {
     inputStream.reset(&input);
-    outputStream = make_unique<stringstream>();
+    outputStream = make_unique<ostringstream>();
 }
 
-CIO::CIO(string input)
+CIO::CIO(std::string input)
 {
     inputStream = make_unique<istringstream>(input);
-    outputStream = make_unique<stringstream>();
+    outputStream = make_unique<ostringstream>();
 }
 
-CIO::CIO(ifstream &input, ofstream &output)
+CIO::CIO(ifstream &input, ostream &output)
 {
     inputStream.reset(&input);
     outputStream.reset(&output);
 }
 
-CIO::CIO(string input, ofstream &output)
+CIO::CIO(string input, ostream &output)
 {
     inputStream = make_unique<istringstream>(input);
     outputStream.reset(&output);
@@ -41,23 +37,27 @@ CIO::~CIO()
     if (dynamic_cast<ifstream*>(inputStream.get())) {
         inputStream.release();
     }
-    if (dynamic_cast<ofstream*>(outputStream.get())) {
+    if (!dynamic_cast<ostringstream*>(outputStream.get())) {
         outputStream.release();
     }
 }
 
-bool CIO::GetNextChar(char& ch)
+char CIO::GetNextChar()
 {
     while (symbolNumber == buffer.size()) {
         ReadString();
         lineNumber++;
         symbolNumber = 0;
     }
-    ch = buffer[symbolNumber++];
-    return !IsEndOfInput();
+    if (IsEndOfInput()) {
+        return ' ';
+    }
+    else {
+        return buffer[symbolNumber++];
+    }
 }
 
-void CIO::AddError(ErrorType eType)
+void CIO::AddError(EErrorType eType)
 {
     errors.push_back(make_unique<CError>(lineNumber, symbolNumber, eType));
 }
@@ -65,7 +65,21 @@ void CIO::AddError(ErrorType eType)
 void CIO::PrintErrors()
 {
     for (auto &error : errors) {
-        *outputStream << "(" << error->GetLineNum() << ", "
-            << error->GetSymbolNum() << ") " << error->GetText() << endl;
+        *outputStream << error->GetText() << " (стр " << error->GetLineNum() << ", стлб "
+            << error->GetSymbolNum() << ")"  << endl;
     }
+}
+
+bool CIO::IsEndOfInput()
+{
+    return (*inputStream).eof() && symbolNumber == buffer.size();
+}
+
+std::string CIO::GetOutputString()
+{
+    auto os = dynamic_cast<ostringstream*>(outputStream.get());
+    if (os) {
+        return os->str();
+    }
+    return "";
 }

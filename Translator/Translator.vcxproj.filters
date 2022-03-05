@@ -10,6 +10,15 @@
     <Filter Include="Translator\Modules\IO">
       <UniqueIdentifier>{2ae87455-be45-46b4-9480-9a72b3302f00}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Translator\Modules\Lexer">
+      <UniqueIdentifier>{ee2458a3-5f0a-4745-ba59-a74839774de9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Translator\Modules\Lexer\Token">
+      <UniqueIdentifier>{181d0bc1-4cda-4b17-9fc5-6addd6117985}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Translator\Modules\Lexer\Token\Variant">
+      <UniqueIdentifier>{4aed6a28-dcdf-4efe-b740-bb6e452791b7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -18,6 +27,39 @@
     </ClCompile>
     <ClCompile Include="CError.cpp">
       <Filter>Translator\Modules\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="CLexer.cpp">
+      <Filter>Translator\Modules\Lexer</Filter>
+    </ClCompile>
+    <ClCompile Include="CToken.cpp">
+      <Filter>Translator\Modules\Lexer\Token</Filter>
+    </ClCompile>
+    <ClCompile Include="CIdentToken.cpp">
+      <Filter>Translator\Modules\Lexer\Token</Filter>
+    </ClCompile>
+    <ClCompile Include="CKeyWordToken.cpp">
+      <Filter>Translator\Modules\Lexer\Token</Filter>
+    </ClCompile>
+    <ClCompile Include="CConstToken.cpp">
+      <Filter>Translator\Modules\Lexer\Token</Filter>
+    </ClCompile>
+    <ClCompile Include="CVariant.cpp">
+      <Filter>Translator\Modules\Lexer\Token\Variant</Filter>
+    </ClCompile>
+    <ClCompile Include="CBooleanVariant.cpp">
+      <Filter>Translator\Modules\Lexer\Token\Variant</Filter>
+    </ClCompile>
+    <ClCompile Include="CIntVariant.cpp">
+      <Filter>Translator\Modules\Lexer\Token\Variant</Filter>
+    </ClCompile>
+    <ClCompile Include="CRealVariant.cpp">
+      <Filter>Translator\Modules\Lexer\Token\Variant</Filter>
+    </ClCompile>
+    <ClCompile Include="CStringVariant.cpp">
+      <Filter>Translator\Modules\Lexer\Token\Variant</Filter>
+    </ClCompile>
+    <ClCompile Include="CEmptyToken.cpp">
+      <Filter>Translator\Modules\Lexer\Token</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -29,6 +71,48 @@
     </ClInclude>
     <ClInclude Include="EErrorType.h">
       <Filter>Translator\Modules\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="CLexer.h">
+      <Filter>Translator\Modules\Lexer</Filter>
+    </ClInclude>
+    <ClInclude Include="CToken.h">
+      <Filter>Translator\Modules\Lexer\Token</Filter>
+    </ClInclude>
+    <ClInclude Include="ETokenType.h">
+      <Filter>Translator\Modules\Lexer\Token</Filter>
+    </ClInclude>
+    <ClInclude Include="CIdentToken.h">
+      <Filter>Translator\Modules\Lexer\Token</Filter>
+    </ClInclude>
+    <ClInclude Include="CKeyWordToken.h">
+      <Filter>Translator\Modules\Lexer\Token</Filter>
+    </ClInclude>
+    <ClInclude Include="CConstToken.h">
+      <Filter>Translator\Modules\Lexer\Token</Filter>
+    </ClInclude>
+    <ClInclude Include="EKeyWordType.h">
+      <Filter>Translator\Modules\Lexer\Token</Filter>
+    </ClInclude>
+    <ClInclude Include="CVariant.h">
+      <Filter>Translator\Modules\Lexer\Token\Variant</Filter>
+    </ClInclude>
+    <ClInclude Include="CBooleanVariant.h">
+      <Filter>Translator\Modules\Lexer\Token\Variant</Filter>
+    </ClInclude>
+    <ClInclude Include="CIntVariant.h">
+      <Filter>Translator\Modules\Lexer\Token\Variant</Filter>
+    </ClInclude>
+    <ClInclude Include="CRealVariant.h">
+      <Filter>Translator\Modules\Lexer\Token\Variant</Filter>
+    </ClInclude>
+    <ClInclude Include="CStringVariant.h">
+      <Filter>Translator\Modules\Lexer\Token\Variant</Filter>
+    </ClInclude>
+    <ClInclude Include="CEmptyToken.h">
+      <Filter>Translator\Modules\Lexer\Token</Filter>
+    </ClInclude>
+    <ClInclude Include="EVariantType.h">
+      <Filter>Translator\Modules\Lexer\Token\Variant</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
