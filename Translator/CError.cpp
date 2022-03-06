@@ -18,13 +18,15 @@ int CError::GetSymbolNum()
 string CError::GetText()
 {
     switch (eType) {
-    case e6:
+    case e006:
         return "Запрещенный символ";
-    case e75:
+    case e050:
+        return "Ошибка в константе";
+    case e075:
         return "Ошибка в символьной константе";
-    case e77:
+    case e077:
         return "Строковая константа не закрыта";
-    case e86:
+    case e086:
         return "Комментарий не закрыт";
     case e201:
         return "Ошибка в вещественной константе: должна идти цифра";

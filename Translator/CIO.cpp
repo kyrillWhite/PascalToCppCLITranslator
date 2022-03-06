@@ -47,6 +47,7 @@ char CIO::GetNextChar()
     while (symbolNumber == buffer.size()) {
         if (inputStream->eof()) {
             buffer = "";
+            lineNumber++;
             symbolNumber = 0;
             return ' ';
         }

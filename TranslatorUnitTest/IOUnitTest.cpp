@@ -24,7 +24,7 @@ namespace TranslatorUnitTest
 			char ch = IO->GetNextChar();
 			Assert::AreEqual(ch, 't');
 			try {
-				IO->AddError(e6);
+				IO->AddError(e006);
 			}
 			catch (...) {
 				IO->PrintErrors();
@@ -40,7 +40,7 @@ namespace TranslatorUnitTest
 			char ch = IO->GetNextChar();
 			Assert::AreEqual(ch, 't');
 			try {
-				IO->AddError(e6);
+				IO->AddError(e006);
 			}
 			catch (...) { }
 			IO->PrintErrors();
@@ -55,7 +55,7 @@ namespace TranslatorUnitTest
 			char ch = IO->GetNextChar();
 			Assert::AreEqual(ch, 't');
 			try {
-				IO->AddError(e6);
+				IO->AddError(e006);
 			}
 			catch (...) { }
 			IO->PrintErrors();
@@ -75,7 +75,7 @@ namespace TranslatorUnitTest
 			char ch = IO->GetNextChar();
 			Assert::AreEqual(ch, 't');
 			try {
-				IO->AddError(e6);
+				IO->AddError(e006);
 			}
 			catch (...) { }
 			IO->PrintErrors();
@@ -101,11 +101,11 @@ namespace TranslatorUnitTest
 			string input("");
 			auto IO = make_unique<CIO>(input);
 			try {
-				IO->AddError(e6);
+				IO->AddError(e006);
 			}
 			catch (...) { }
 			try {
-				IO->AddError(e75);
+				IO->AddError(e075);
 			}
 			catch (...) {}
 			IO->PrintErrors();
@@ -122,7 +122,7 @@ namespace TranslatorUnitTest
 		}
 
 		TEST_METHOD(ClassError) {
-			auto error = make_unique<CError>(1, 2, e6);
+			auto error = make_unique<CError>(1, 2, e006);
 			Assert::AreEqual(error->GetLineNum(), 1);
 			Assert::AreEqual(error->GetSymbolNum(), 2);
 			Assert::AreEqual(error->GetText().c_str(), "Запрещенный символ");

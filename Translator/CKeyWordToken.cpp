@@ -86,7 +86,7 @@ std::string CKeyWordToken::ToString()
     case laterequalSy:
         return "<=";
     case greaterequalSy:
-        return "=>";
+        return ">=";
     case latergreaterSy:
         return "<>";
     case plusSy:

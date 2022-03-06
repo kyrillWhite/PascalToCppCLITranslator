@@ -156,8 +156,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\Translator\CBooleanVariant.cpp" />
+    <ClCompile Include="..\Translator\CConstToken.cpp" />
+    <ClCompile Include="..\Translator\CEmptyToken.cpp" />
     <ClCompile Include="..\Translator\CError.cpp" />
+    <ClCompile Include="..\Translator\CIdentToken.cpp" />
+    <ClCompile Include="..\Translator\CIntVariant.cpp" />
     <ClCompile Include="..\Translator\CIO.cpp" />
+    <ClCompile Include="..\Translator\CKeyWordToken.cpp" />
+    <ClCompile Include="..\Translator\CLexer.cpp" />
+    <ClCompile Include="..\Translator\CRealVariant.cpp" />
+    <ClCompile Include="..\Translator\CStringVariant.cpp" />
+    <ClCompile Include="..\Translator\CToken.cpp" />
+    <ClCompile Include="..\Translator\CVariant.cpp" />
     <ClCompile Include="LexerUnitTest.cpp" />
     <ClCompile Include="IOUnitTest.cpp" />
   </ItemGroup>

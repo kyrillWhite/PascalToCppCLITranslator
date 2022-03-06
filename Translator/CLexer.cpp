@@ -94,7 +94,7 @@ unique_ptr<CToken> CLexer::GetNextToken()
             char tCh = ' ';
             while (tCh != '*' || ch != ')') {
                 if (IO->IsEndOfInput()) {
-                    IO->AddError(e86);
+                    IO->AddError(e086);
                 }
                 tCh = ch;
                 ch = IO->GetNextChar();
@@ -111,7 +111,7 @@ unique_ptr<CToken> CLexer::GetNextToken()
     case '{':
         while (ch != '}') {
             if (IO->IsEndOfInput()) {
-                IO->AddError(e86);
+                IO->AddError(e086);
             }
             ch = IO->GetNextChar();
         }
@@ -156,13 +156,13 @@ unique_ptr<CToken> CLexer::GetNextToken()
         string constStr = "";
         while (ch != '\'') {
             if (ch == '\n' || IO->IsEndOfInput()) {
-                IO->AddError(e77);
+                IO->AddError(e077);
             }
             constStr += ch;
             ch = IO->GetNextChar();
         }
         if (constStr == "") {
-            IO->AddError(e75);
+            IO->AddError(e075);
         }
         ch = IO->GetNextChar();
         return make_unique<CConstToken>(make_unique<CStringVariant>(constStr));
@@ -210,7 +210,10 @@ unique_ptr<CToken> CLexer::GetNextToken()
                 num += ch;
                 ch = IO->GetNextChar();
             }
-            if (hasDot) {
+            if (ch >= 'a' && ch <= 'z' || ch >= 'A' && ch <= 'Z' || ch == '_') {
+                IO->AddError(e050);
+            }
+            else if (hasDot) {
                 try {
                     double dNum = stod(num);
                     return make_unique<CConstToken>(make_unique<CRealVariant>(dNum));
@@ -249,8 +252,7 @@ unique_ptr<CToken> CLexer::GetNextToken()
             return GetNextToken();
         }
         else {
-            ch = IO->GetNextChar();
-            IO->AddError(e6);
+            IO->AddError(e006);
         }
     }
 }
