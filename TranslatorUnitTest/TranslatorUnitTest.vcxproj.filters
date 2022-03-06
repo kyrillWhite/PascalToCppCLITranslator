@@ -19,6 +19,9 @@
     <Filter Include="Исходные файлы\IO">
       <UniqueIdentifier>{0fc23a47-656f-49ce-9701-ec34b5ce7bc4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\Lexer">
+      <UniqueIdentifier>{a5572561-ee76-4038-98e2-63ea81d832b6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LexerUnitTest.cpp">
@@ -32,6 +35,39 @@
     </ClCompile>
     <ClCompile Include="..\Translator\CError.cpp">
       <Filter>Исходные файлы\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Translator\CLexer.cpp">
+      <Filter>Исходные файлы\Lexer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Translator\CToken.cpp">
+      <Filter>Исходные файлы\Lexer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Translator\CKeyWordToken.cpp">
+      <Filter>Исходные файлы\Lexer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Translator\CIdentToken.cpp">
+      <Filter>Исходные файлы\Lexer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Translator\CEmptyToken.cpp">
+      <Filter>Исходные файлы\Lexer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Translator\CConstToken.cpp">
+      <Filter>Исходные файлы\Lexer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Translator\CVariant.cpp">
+      <Filter>Исходные файлы\Lexer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Translator\CStringVariant.cpp">
+      <Filter>Исходные файлы\Lexer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Translator\CRealVariant.cpp">
+      <Filter>Исходные файлы\Lexer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Translator\CIntVariant.cpp">
+      <Filter>Исходные файлы\Lexer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Translator\CBooleanVariant.cpp">
+      <Filter>Исходные файлы\Lexer</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

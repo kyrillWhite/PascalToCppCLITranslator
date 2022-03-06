@@ -13,5 +13,6 @@ private:
 
 public:
     CConstToken(std::unique_ptr<CVariant> _variant);
+    CVariant* GetVariant();
     std::string ToString() override;
 };
