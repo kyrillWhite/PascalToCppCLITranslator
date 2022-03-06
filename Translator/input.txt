@@ -1,8 +1,8 @@
 program ProG;
 	var a, b, c: integer;
-	var t, v: integer;
-	var age: real;
-	var name: string;
+	    t, v: integer;
+	    age: real;
+	    name: string;
 begin
 
 	a := 3000000;

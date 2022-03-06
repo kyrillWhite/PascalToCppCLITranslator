@@ -1,6 +1,5 @@
 ﻿#include <iostream>
-#include "CIO.h"
-#include "CLexer.h"
+#include "CParser.h"
 
 using namespace std;
 
@@ -11,17 +10,14 @@ int main()
     //ofstream output("output.txt");
     auto IO = make_unique<CIO>(input, cout);
     auto lexer = make_unique<CLexer>(move(IO));
+    auto parser = make_unique<CParser>(move(lexer));
     
     try {
-        while (!lexer->GetIOPtr()->IsEndOfInput()) {
-            auto token = lexer->GetNextToken();
-            cout << token->ToString() << endl;
-        }
+        parser->Evaluate();
     }
-    catch (CError* error) {
-        lexer->GetIOPtr()->PrintErrors();
-    }
+    catch (...) { }
 
+    parser->GetLexerPtr()->GetIOPtr()->PrintErrors();
     input.close();
     //output.close();
 }

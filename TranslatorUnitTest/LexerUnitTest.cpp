@@ -51,21 +51,18 @@ namespace TranslatorUnitTest
 		}
 
 		TEST_METHOD(WordKeyWordToken) {
-			string input = "program var boolean integer real string procedure or and " 
-				"div mod begin end if then else while do repeat until to downto";
+			string input = "program var procedure or and not div mod begin " 
+				"end if then else while do repeat until for to downto";
 
 			auto IO = make_unique<CIO>(input);
 			auto lexer = make_unique<CLexer>(move(IO));
 
 			Assert::IsTrue(dynamic_cast<CKeyWordToken*>(lexer->GetNextToken().get())->GetKeyWordType() == programSy);
 			Assert::IsTrue(dynamic_cast<CKeyWordToken*>(lexer->GetNextToken().get())->GetKeyWordType() == varSy);
-			Assert::IsTrue(dynamic_cast<CKeyWordToken*>(lexer->GetNextToken().get())->GetKeyWordType() == booleanSy);
-			Assert::IsTrue(dynamic_cast<CKeyWordToken*>(lexer->GetNextToken().get())->GetKeyWordType() == integerSy);
-			Assert::IsTrue(dynamic_cast<CKeyWordToken*>(lexer->GetNextToken().get())->GetKeyWordType() == realSy);
-			Assert::IsTrue(dynamic_cast<CKeyWordToken*>(lexer->GetNextToken().get())->GetKeyWordType() == stringSy);
 			Assert::IsTrue(dynamic_cast<CKeyWordToken*>(lexer->GetNextToken().get())->GetKeyWordType() == procedureSy);
 			Assert::IsTrue(dynamic_cast<CKeyWordToken*>(lexer->GetNextToken().get())->GetKeyWordType() == orSy);
 			Assert::IsTrue(dynamic_cast<CKeyWordToken*>(lexer->GetNextToken().get())->GetKeyWordType() == andSy);
+			Assert::IsTrue(dynamic_cast<CKeyWordToken*>(lexer->GetNextToken().get())->GetKeyWordType() == notSy);
 			Assert::IsTrue(dynamic_cast<CKeyWordToken*>(lexer->GetNextToken().get())->GetKeyWordType() == divSy);
 			Assert::IsTrue(dynamic_cast<CKeyWordToken*>(lexer->GetNextToken().get())->GetKeyWordType() == modSy);
 			Assert::IsTrue(dynamic_cast<CKeyWordToken*>(lexer->GetNextToken().get())->GetKeyWordType() == beginSy);
@@ -77,6 +74,7 @@ namespace TranslatorUnitTest
 			Assert::IsTrue(dynamic_cast<CKeyWordToken*>(lexer->GetNextToken().get())->GetKeyWordType() == doSy);
 			Assert::IsTrue(dynamic_cast<CKeyWordToken*>(lexer->GetNextToken().get())->GetKeyWordType() == repeatSy);
 			Assert::IsTrue(dynamic_cast<CKeyWordToken*>(lexer->GetNextToken().get())->GetKeyWordType() == untilSy);
+			Assert::IsTrue(dynamic_cast<CKeyWordToken*>(lexer->GetNextToken().get())->GetKeyWordType() == forSy);
 			Assert::IsTrue(dynamic_cast<CKeyWordToken*>(lexer->GetNextToken().get())->GetKeyWordType() == toSy);
 			Assert::IsTrue(dynamic_cast<CKeyWordToken*>(lexer->GetNextToken().get())->GetKeyWordType() == downtoSy);
 		}

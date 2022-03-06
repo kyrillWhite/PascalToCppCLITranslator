@@ -16,10 +16,13 @@
     <Filter Include="Исходные файлы\Tests">
       <UniqueIdentifier>{923bf9d1-b960-4d79-9014-b6f8c4f370a6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Исходные файлы\IO">
+    <Filter Include="Исходные файлы\Modules">
+      <UniqueIdentifier>{22344e39-e5a1-4a39-b686-ee74704a38c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Modules\IO">
       <UniqueIdentifier>{0fc23a47-656f-49ce-9701-ec34b5ce7bc4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Исходные файлы\Lexer">
+    <Filter Include="Исходные файлы\Modules\Lexer">
       <UniqueIdentifier>{a5572561-ee76-4038-98e2-63ea81d832b6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -31,43 +34,43 @@
       <Filter>Исходные файлы\Tests</Filter>
     </ClCompile>
     <ClCompile Include="..\Translator\CIO.cpp">
-      <Filter>Исходные файлы\IO</Filter>
+      <Filter>Исходные файлы\Modules\IO</Filter>
     </ClCompile>
     <ClCompile Include="..\Translator\CError.cpp">
-      <Filter>Исходные файлы\IO</Filter>
+      <Filter>Исходные файлы\Modules\IO</Filter>
     </ClCompile>
     <ClCompile Include="..\Translator\CLexer.cpp">
-      <Filter>Исходные файлы\Lexer</Filter>
+      <Filter>Исходные файлы\Modules\Lexer</Filter>
     </ClCompile>
     <ClCompile Include="..\Translator\CToken.cpp">
-      <Filter>Исходные файлы\Lexer</Filter>
+      <Filter>Исходные файлы\Modules\Lexer</Filter>
     </ClCompile>
     <ClCompile Include="..\Translator\CKeyWordToken.cpp">
-      <Filter>Исходные файлы\Lexer</Filter>
+      <Filter>Исходные файлы\Modules\Lexer</Filter>
     </ClCompile>
     <ClCompile Include="..\Translator\CIdentToken.cpp">
-      <Filter>Исходные файлы\Lexer</Filter>
+      <Filter>Исходные файлы\Modules\Lexer</Filter>
     </ClCompile>
     <ClCompile Include="..\Translator\CEmptyToken.cpp">
-      <Filter>Исходные файлы\Lexer</Filter>
+      <Filter>Исходные файлы\Modules\Lexer</Filter>
     </ClCompile>
     <ClCompile Include="..\Translator\CConstToken.cpp">
-      <Filter>Исходные файлы\Lexer</Filter>
+      <Filter>Исходные файлы\Modules\Lexer</Filter>
     </ClCompile>
     <ClCompile Include="..\Translator\CVariant.cpp">
-      <Filter>Исходные файлы\Lexer</Filter>
+      <Filter>Исходные файлы\Modules\Lexer</Filter>
     </ClCompile>
     <ClCompile Include="..\Translator\CStringVariant.cpp">
-      <Filter>Исходные файлы\Lexer</Filter>
+      <Filter>Исходные файлы\Modules\Lexer</Filter>
     </ClCompile>
     <ClCompile Include="..\Translator\CRealVariant.cpp">
-      <Filter>Исходные файлы\Lexer</Filter>
+      <Filter>Исходные файлы\Modules\Lexer</Filter>
     </ClCompile>
     <ClCompile Include="..\Translator\CIntVariant.cpp">
-      <Filter>Исходные файлы\Lexer</Filter>
+      <Filter>Исходные файлы\Modules\Lexer</Filter>
     </ClCompile>
     <ClCompile Include="..\Translator\CBooleanVariant.cpp">
-      <Filter>Исходные файлы\Lexer</Filter>
+      <Filter>Исходные файлы\Modules\Lexer</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

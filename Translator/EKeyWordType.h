@@ -1,14 +1,12 @@
 #pragma once
 enum EKeyWordType {
     programSy,      // program
+    typeSy,         // type
     varSy,          // var
-    booleanSy,      // boolean
-    integerSy,      // integer
-    realSy,         // real
-    stringSy,       // string
     procedureSy,    // procedure
     orSy,           // or
     andSy,          // and
+    notSy,          // not
     divSy,          // div
     modSy,          // mod
     beginSy,        // begin
@@ -20,6 +18,7 @@ enum EKeyWordType {
     doSy,           // do
     repeatSy,       // repeat
     untilSy,        // until
+    forSy,          // for
     toSy,           // to
     downtoSy,       // downto
     starSy,         // *

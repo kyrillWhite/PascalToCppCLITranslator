@@ -148,6 +148,7 @@
     <ClCompile Include="CIO.cpp" />
     <ClCompile Include="CKeyWordToken.cpp" />
     <ClCompile Include="CLexer.cpp" />
+    <ClCompile Include="CParser.cpp" />
     <ClCompile Include="CRealVariant.cpp" />
     <ClCompile Include="CStringVariant.cpp" />
     <ClCompile Include="CToken.cpp" />
@@ -164,6 +165,7 @@
     <ClInclude Include="CIO.h" />
     <ClInclude Include="CKeyWordToken.h" />
     <ClInclude Include="CLexer.h" />
+    <ClInclude Include="CParser.h" />
     <ClInclude Include="CRealVariant.h" />
     <ClInclude Include="CStringVariant.h" />
     <ClInclude Include="CToken.h" />
