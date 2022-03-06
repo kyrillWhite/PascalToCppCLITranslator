@@ -18,10 +18,38 @@ int CError::GetSymbolNum()
 string CError::GetText()
 {
     switch (eType) {
+    case e002:
+        return "Должно идти имя";
+    case e003:
+        return "Должно быть служебное слово PROGRAM";
+    case e004:
+        return "Должен идти символ \')\'";
+    case e005:
+        return "Должен идти символ \':\'";
     case e006:
         return "Запрещенный символ";
+    case e013:
+        return "Должно идти слово END";
+    case e014:
+        return "Должен идти символ \';\'";
+    case e016:
+        return "Должен идти символ \'=\'";
+    case e017:
+        return "Должно идти слово BEGIN";
+    case e021:
+        return "Требуется выражение";
     case e050:
         return "Ошибка в константе";
+    case e051:
+        return "Должен идти символ \':=\'";
+    case e052:
+        return "Должно идти слово THEN";
+    case e053:
+        return "Должно идти слово UNTIL";
+    case e054:
+        return "Должно идти слово DO";
+    case e055:
+        return "Должно идти слово TO или DOWNTO";
     case e075:
         return "Ошибка в символьной константе";
     case e077:

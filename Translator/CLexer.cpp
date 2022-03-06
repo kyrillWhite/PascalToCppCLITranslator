@@ -8,14 +8,12 @@ CLexer::CLexer(unique_ptr<CIO> _IO) : IO(move(_IO)), ch(' ')
     keyWords =
     {
         {"program",   programSy},
+        {"type",      typeSy},
         {"var",       varSy},
-        {"boolean",   booleanSy},
-        {"integer",   integerSy},
-        {"real",      realSy},
-        {"string",    stringSy},
         {"procedure", procedureSy},
         {"or",        orSy},
         {"and",       andSy},
+        {"not",       notSy},
         {"div",       divSy},
         {"mod",       modSy},
         {"begin",     beginSy},
@@ -27,6 +25,7 @@ CLexer::CLexer(unique_ptr<CIO> _IO) : IO(move(_IO)), ch(' ')
         {"do",        doSy},
         {"repeat",    repeatSy},
         {"until",     untilSy},
+        {"for",       forSy},
         {"to",        toSy},
         {"downto",    downtoSy}
     };

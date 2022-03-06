@@ -19,6 +19,9 @@
     <Filter Include="Translator\Modules\Lexer\Token\Variant">
       <UniqueIdentifier>{4aed6a28-dcdf-4efe-b740-bb6e452791b7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Translator\Modules\Parser">
+      <UniqueIdentifier>{98206ca5-494b-4159-b90c-4cb181532d33}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -60,6 +63,9 @@
     </ClCompile>
     <ClCompile Include="CError.cpp">
       <Filter>Translator\Modules\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="CParser.cpp">
+      <Filter>Translator\Modules\Parser</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -113,6 +119,9 @@
     </ClInclude>
     <ClInclude Include="EVariantType.h">
       <Filter>Translator\Modules\Lexer\Token\Variant</Filter>
+    </ClInclude>
+    <ClInclude Include="CParser.h">
+      <Filter>Translator\Modules\Parser</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -15,20 +15,14 @@ std::string CKeyWordToken::ToString()
         return "program";
     case varSy:
         return "var";
-    case booleanSy:
-        return "boolean";
-    case integerSy:
-        return "integer";
-    case realSy:
-        return "real";
-    case stringSy:
-        return "string";
     case procedureSy:
         return "procedure";
     case orSy:
         return "or";
     case andSy:
         return "and";
+    case notSy:
+        return "not";
     case divSy:
         return "div";
     case modSy:
@@ -51,6 +45,8 @@ std::string CKeyWordToken::ToString()
         return "repeat";
     case untilSy:
         return "until";
+    case forSy:
+        return "for";
     case toSy:
         return "to";
     case downtoSy:
