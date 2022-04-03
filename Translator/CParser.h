@@ -6,7 +6,7 @@ class CParser
 {
 private:
     std::unique_ptr<CToken> curToken;
-    std::unique_ptr<CLexer> lexer;
+    std::shared_ptr<CLexer> lexer;
 
     void GetNextToken();
     void Accept(ETokenType tType);
@@ -50,7 +50,7 @@ private:
     void Dirrection();                      // Направление
 
 public:
-    CParser(std::unique_ptr<CLexer> _lexer);
-    CLexer* GetLexerPtr();
+    CParser(std::shared_ptr<CLexer> _lexer);
+    std::shared_ptr<CLexer> GetLexerPtr();
     void Evaluate();
 };

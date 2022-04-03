@@ -20,7 +20,7 @@ namespace TranslatorUnitTest
 
 		TEST_METHOD(IFileOString) {
 			ifstream input(CURRENT_DIRECTORY + "tests/IO/test1.txt");
-			auto IO = make_unique<CIO>(input);
+			auto IO = make_shared<CIO>(input);
 			char ch = IO->GetNextChar();
 			Assert::AreEqual(ch, 't');
 			try {
@@ -36,7 +36,7 @@ namespace TranslatorUnitTest
 
 		TEST_METHOD(IStringOString) {
 			string input("t");
-			auto IO = make_unique<CIO>(input);
+			auto IO = make_shared<CIO>(input);
 			char ch = IO->GetNextChar();
 			Assert::AreEqual(ch, 't');
 			try {
@@ -51,7 +51,7 @@ namespace TranslatorUnitTest
 		TEST_METHOD(IFileOFile) {
 			ifstream input(CURRENT_DIRECTORY + "tests/IO/test1.txt");
 			ofstream output(CURRENT_DIRECTORY + "tests/IO/output1.txt");
-			auto IO = make_unique<CIO>(input, output);
+			auto IO = make_shared<CIO>(input, output);
 			char ch = IO->GetNextChar();
 			Assert::AreEqual(ch, 't');
 			try {
@@ -71,7 +71,7 @@ namespace TranslatorUnitTest
 		TEST_METHOD(IStringOFile) {
 			string input("t");
 			ofstream output(CURRENT_DIRECTORY + "tests/IO/output1.txt");
-			auto IO = make_unique<CIO>(input, output);
+			auto IO = make_shared<CIO>(input, output);
 			char ch = IO->GetNextChar();
 			Assert::AreEqual(ch, 't');
 			try {
@@ -89,7 +89,7 @@ namespace TranslatorUnitTest
 
 		TEST_METHOD(ReadString) {
 			string input("s1\ns2");
-			auto IO = make_unique<CIO>(input);
+			auto IO = make_shared<CIO>(input);
 			string res = "";
 			for (int i = 0; i < 7; i++) {
 				res += IO->GetNextChar();
@@ -99,7 +99,7 @@ namespace TranslatorUnitTest
 
 		TEST_METHOD(PrintErrors) {
 			string input("");
-			auto IO = make_unique<CIO>(input);
+			auto IO = make_shared<CIO>(input);
 			try {
 				IO->AddError(e006);
 			}
@@ -115,14 +115,14 @@ namespace TranslatorUnitTest
 
 		TEST_METHOD(IsEndOfInput) {
 			string input("");
-			auto IO = make_unique<CIO>(input);
+			auto IO = make_shared<CIO>(input);
 			IO->GetNextChar();
 			IO->GetNextChar();
 			Assert::IsTrue(IO->IsEndOfInput());
 		}
 
 		TEST_METHOD(ClassError) {
-			auto error = make_unique<CError>(1, 2, e006);
+			auto error = make_shared<CError>(1, 2, e006);
 			Assert::AreEqual(error->GetLineNum(), 1);
 			Assert::AreEqual(error->GetSymbolNum(), 2);
 			Assert::AreEqual(error->GetText().c_str(), "Запрещенный символ");

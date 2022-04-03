@@ -25,6 +25,9 @@
     <Filter Include="Исходные файлы\Modules\Lexer">
       <UniqueIdentifier>{a5572561-ee76-4038-98e2-63ea81d832b6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\Modules\Parser">
+      <UniqueIdentifier>{586dd864-57bc-46ba-8f83-948dcd8efdfc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LexerUnitTest.cpp">
@@ -71,6 +74,12 @@
     </ClCompile>
     <ClCompile Include="..\Translator\CBooleanVariant.cpp">
       <Filter>Исходные файлы\Modules\Lexer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Translator\CParser.cpp">
+      <Filter>Исходные файлы\Modules\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="ParserUnitTest.cpp">
+      <Filter>Исходные файлы\Tests</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
