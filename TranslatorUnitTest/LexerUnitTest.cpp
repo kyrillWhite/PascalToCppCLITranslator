@@ -16,8 +16,8 @@ namespace TranslatorUnitTest
 		{
 			string input = "*/=,;:.^()[]><+-";
 
-			auto IO = make_unique<CIO>(input);
-			auto lexer = make_unique<CLexer>(move(IO));
+			auto IO = make_shared<CIO>(input);
+			auto lexer = make_shared<CLexer>(IO);
 
 			Assert::IsTrue(dynamic_cast<CKeyWordToken*>(lexer->GetNextToken().get())->GetKeyWordType() == starSy);
 			Assert::IsTrue(dynamic_cast<CKeyWordToken*>(lexer->GetNextToken().get())->GetKeyWordType() == slashSy);
@@ -40,8 +40,8 @@ namespace TranslatorUnitTest
 		TEST_METHOD(TwoSymbolsKeyWordToken) {
 			string input = "<=>=<>:=..";
 
-			auto IO = make_unique<CIO>(input);
-			auto lexer = make_unique<CLexer>(move(IO));
+			auto IO = make_shared<CIO>(input);
+			auto lexer = make_shared<CLexer>(IO);
 
 			Assert::IsTrue(dynamic_cast<CKeyWordToken*>(lexer->GetNextToken().get())->GetKeyWordType() == laterequalSy);
 			Assert::IsTrue(dynamic_cast<CKeyWordToken*>(lexer->GetNextToken().get())->GetKeyWordType() == greaterequalSy);
@@ -54,8 +54,8 @@ namespace TranslatorUnitTest
 			string input = "program var procedure or and not div mod begin " 
 				"end if then else while do repeat until for to downto";
 
-			auto IO = make_unique<CIO>(input);
-			auto lexer = make_unique<CLexer>(move(IO));
+			auto IO = make_shared<CIO>(input);
+			auto lexer = make_shared<CLexer>(IO);
 
 			Assert::IsTrue(dynamic_cast<CKeyWordToken*>(lexer->GetNextToken().get())->GetKeyWordType() == programSy);
 			Assert::IsTrue(dynamic_cast<CKeyWordToken*>(lexer->GetNextToken().get())->GetKeyWordType() == varSy);
@@ -85,8 +85,8 @@ namespace TranslatorUnitTest
 				"{commentary2}\n"
 				"(*commentary3*)";
 
-			auto IO = make_unique<CIO>(input);
-			auto lexer = make_unique<CLexer>(move(IO));
+			auto IO = make_shared<CIO>(input);
+			auto lexer = make_shared<CLexer>(IO);
 
 			Assert::AreEqual(lexer->GetNextToken()->ToString().c_str(), "");
 		}
@@ -99,8 +99,8 @@ namespace TranslatorUnitTest
 				"2000\n"
 				"123.456";
 
-			auto IO = make_unique<CIO>(input);
-			auto lexer = make_unique<CLexer>(move(IO));
+			auto IO = make_shared<CIO>(input);
+			auto lexer = make_shared<CLexer>(IO);
 
 			Assert::AreEqual(dynamic_cast<CStringVariant*>(dynamic_cast<CConstToken*>(lexer->GetNextToken().get())->GetVariant())->GetValue().c_str(), "string");
 			Assert::AreEqual(dynamic_cast<CBooleanVariant*>(dynamic_cast<CConstToken*>(lexer->GetNextToken().get())->GetVariant())->GetValue(), true);
@@ -114,16 +114,16 @@ namespace TranslatorUnitTest
 				"ident1\n"
 				"ident2\n";
 
-			auto IO = make_unique<CIO>(input);
-			auto lexer = make_unique<CLexer>(move(IO));
+			auto IO = make_shared<CIO>(input);
+			auto lexer = make_shared<CLexer>(IO);
 
 			Assert::AreEqual(lexer->GetNextToken().get()->ToString().c_str(), "ident1");
 			Assert::AreEqual(lexer->GetNextToken().get()->ToString().c_str(), "ident2");
 		}
 
 		string ErrorTestOutput(string input) {
-			auto IO = make_unique<CIO>(input);
-			auto lexer = make_unique<CLexer>(move(IO));
+			auto IO = make_shared<CIO>(input);
+			auto lexer = make_shared<CLexer>(IO);
 
 			try {
 				lexer->GetNextToken();

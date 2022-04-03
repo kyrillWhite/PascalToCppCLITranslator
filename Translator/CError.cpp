@@ -50,6 +50,8 @@ string CError::GetText()
         return "Должно идти слово DO";
     case e055:
         return "Должно идти слово TO или DOWNTO";
+    case e061:
+        return "Должен идти символ \'.\'";
     case e075:
         return "Ошибка в символьной константе";
     case e077:

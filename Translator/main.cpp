@@ -8,9 +8,9 @@ int main()
     setlocale(LC_CTYPE, "Russian");
     ifstream input("input.txt");
     //ofstream output("output.txt");
-    auto IO = make_unique<CIO>(input, cout);
-    auto lexer = make_unique<CLexer>(move(IO));
-    auto parser = make_unique<CParser>(move(lexer));
+    auto IO = make_shared<CIO>(input, cout);
+    auto lexer = make_shared<CLexer>(IO);
+    auto parser = make_shared<CParser>(lexer);
     
     try {
         parser->Evaluate();

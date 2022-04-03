@@ -13,11 +13,11 @@ class CLexer
 {
 private:
     char ch;
-    std::unique_ptr<CIO> IO;
+    std::shared_ptr<CIO> IO;
     std::map<std::string, EKeyWordType> keyWords;
 
 public:
-    CLexer(std::unique_ptr<CIO> _IO);
-    CIO* GetIOPtr();
+    CLexer(std::shared_ptr<CIO> _IO);
+    std::shared_ptr<CIO> GetIOPtr();
     std::unique_ptr<CToken> GetNextToken();
 };

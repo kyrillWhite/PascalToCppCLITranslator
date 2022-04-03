@@ -3,7 +3,7 @@
 
 using namespace std;
 
-CLexer::CLexer(unique_ptr<CIO> _IO) : IO(move(_IO)), ch(' ')
+CLexer::CLexer(shared_ptr<CIO> _IO) : IO(move(_IO)), ch(' ')
 {
     keyWords =
     {
@@ -31,9 +31,9 @@ CLexer::CLexer(unique_ptr<CIO> _IO) : IO(move(_IO)), ch(' ')
     };
 }
 
-CIO* CLexer::GetIOPtr()
+shared_ptr<CIO> CLexer::GetIOPtr()
 {
-    return IO.get();
+    return IO;
 }
 
 unique_ptr<CToken> CLexer::GetNextToken()

@@ -43,6 +43,8 @@ void CParser::Accept(EKeyWordType kwType)
             lexer->GetIOPtr()->AddError(e053);
         case doSy:
             lexer->GetIOPtr()->AddError(e054);
+        case pointSy:
+            lexer->GetIOPtr()->AddError(e061);
         default:
             std::cout << "?";
         }
@@ -100,6 +102,7 @@ void CParser::Program()
     Accept(ttIdent);
     Accept(semicolonSy);
     Block();
+    Accept(pointSy);
 }
 
 void CParser::Block()
@@ -324,6 +327,7 @@ void CParser::ProcedureOperator()
             GetNextToken();
             ActualParameter();
         }
+        Accept(rightparSy);
     }
 }
 
@@ -407,11 +411,11 @@ void CParser::Dirrection()
     lexer->GetIOPtr()->AddError(e055);
 }
 
-CParser::CParser(std::unique_ptr<CLexer> _lexer) : lexer(move(_lexer)) { }
+CParser::CParser(std::shared_ptr<CLexer> _lexer) : lexer(move(_lexer)) { }
 
-CLexer* CParser::GetLexerPtr()
+std::shared_ptr<CLexer> CParser::GetLexerPtr()
 {
-    return lexer.get();
+    return lexer;
 }
 
 void CParser::Evaluate()

@@ -165,12 +165,14 @@
     <ClCompile Include="..\Translator\CIO.cpp" />
     <ClCompile Include="..\Translator\CKeyWordToken.cpp" />
     <ClCompile Include="..\Translator\CLexer.cpp" />
+    <ClCompile Include="..\Translator\CParser.cpp" />
     <ClCompile Include="..\Translator\CRealVariant.cpp" />
     <ClCompile Include="..\Translator\CStringVariant.cpp" />
     <ClCompile Include="..\Translator\CToken.cpp" />
     <ClCompile Include="..\Translator\CVariant.cpp" />
     <ClCompile Include="LexerUnitTest.cpp" />
     <ClCompile Include="IOUnitTest.cpp" />
+    <ClCompile Include="ParserUnitTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Translator\Translator.vcxproj">
