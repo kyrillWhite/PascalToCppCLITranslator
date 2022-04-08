@@ -11,7 +11,7 @@ int main()
     auto IO = make_shared<CIO>(input, cout);
     auto lexer = make_shared<CLexer>(IO);
     auto parser = make_shared<CParser>(lexer);
-    
+
     try {
         parser->Evaluate();
     }

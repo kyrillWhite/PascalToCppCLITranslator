@@ -1,5 +1,5 @@
 program ProG;
-	var a, b, c: integer;
+	var var a, b, c: integer;
 	    t, v: integer;
 	    age: real;
 	    name: string;
@@ -9,7 +9,7 @@ begin
 	//b := 5;
 	c := 4;
 
-	t := a;
+	t a := a;
 
 	{a := b;
 	b := t;}
@@ -20,11 +20,11 @@ begin
 	(*b := c;
 	c := t;*)
 
-	if 1 > 2 then
+	if 1 >< 2 then
 		a := 1
 	else
 		a := 2;
 
-	name := 'Peter';
+	name := s'Peter';
 	age := 10.9;
 end.

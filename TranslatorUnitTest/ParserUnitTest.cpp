@@ -243,7 +243,7 @@ namespace TranslatorUnitTest
 			string correct = ErrorTestOutput(
 				"program pr1;\n"
 				"begin\n"
-				"if 1 > 2 then\n"
+				"if (1 > 2) then\n"
 				"a := a\n"
 				"else\n"
 				"a := 1 + 1\n"
