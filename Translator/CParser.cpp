@@ -126,17 +126,10 @@ void CParser::Program(vector<shared_ptr<CToken>> followers)
         Accept(programSy);
         Accept(ttIdent);
         Accept(semicolonSy);
-        Block(followers);
+        Block(blockFollowers);
         Accept(pointSy);
     }
-    catch (...) { catchedError = true; }
-    if (!Belong(followers)) {
-        if (!catchedError) {
-            try { lexer->GetIOPtr()->AddError(e006); }
-            catch (...) {}
-        }
-        SkipTo(followers);
-    }
+    catch (...) { }
 }
 
 void CParser::Block(vector<shared_ptr<CToken>> followers)
@@ -146,9 +139,11 @@ void CParser::Block(vector<shared_ptr<CToken>> followers)
     typesSectionFollowers.push_back(make_shared<CKeyWordToken>(varSy));
     typesSectionFollowers.push_back(make_shared<CKeyWordToken>(procedureSy));
     typesSectionFollowers.push_back(make_shared<CKeyWordToken>(beginSy));
+
     auto variablesSectionFollowers = followers;
     variablesSectionFollowers.push_back(make_shared<CKeyWordToken>(procedureSy));
     variablesSectionFollowers.push_back(make_shared<CKeyWordToken>(beginSy));
+
     auto proceduresSectionFollowers = followers;
     proceduresSectionFollowers.push_back(make_shared<CKeyWordToken>(beginSy));
     try {
