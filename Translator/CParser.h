@@ -8,6 +8,8 @@ private:
     std::unique_ptr<CToken> curToken;
     std::shared_ptr<CLexer> lexer;
 
+    bool isNeutralizeErrors;
+
     void GetNextToken();
     void Accept(ETokenType tType);
     void Accept(EKeyWordType kwType);
@@ -52,7 +54,7 @@ private:
     void Dirrection(std::vector<std::shared_ptr<CToken>> followers = {});                // Направление
 
 public:
-    CParser(std::shared_ptr<CLexer> _lexer);
+    CParser(std::shared_ptr<CLexer> _lexer, bool _isNeutralizeErrors = true);
     std::shared_ptr<CLexer> GetLexerPtr();
     void Evaluate();
 };

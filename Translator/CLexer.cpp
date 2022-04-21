@@ -161,6 +161,7 @@ unique_ptr<CToken> CLexer::GetNextToken()
             ch = IO->GetNextChar();
         }
         if (constStr == "") {
+            ch = IO->GetNextChar();
             IO->AddError(e075);
         }
         ch = IO->GetNextChar();
@@ -199,6 +200,7 @@ unique_ptr<CToken> CLexer::GetNextToken()
             while (ch >= '0' && ch <= '9' || ch == '.') {
                 if (ch == '.') {
                     if (hasDot) {
+                        ch = IO->GetNextChar();
                         IO->AddError(e201);
                     }
                     hasDot = true;
@@ -251,6 +253,7 @@ unique_ptr<CToken> CLexer::GetNextToken()
             return GetNextToken();
         }
         else {
+            ch = IO->GetNextChar();
             IO->AddError(e006);
         }
     }

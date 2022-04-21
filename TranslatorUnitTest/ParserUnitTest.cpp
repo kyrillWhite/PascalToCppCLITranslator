@@ -14,7 +14,7 @@ namespace TranslatorUnitTest
 		string ErrorTestOutput(string input) {
 			auto IO = make_shared<CIO>(input);
 			auto lexer = make_shared<CLexer>(IO);
-			auto parser = make_shared<CParser>(lexer);
+			auto parser = make_shared<CParser>(lexer, false);
 
 			try {
 				parser->Evaluate();

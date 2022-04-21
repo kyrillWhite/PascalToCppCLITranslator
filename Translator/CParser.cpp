@@ -153,7 +153,10 @@ void CParser::Block(vector<shared_ptr<CToken>> followers)
         OperatorsSection(followers);
     }
     catch (...) { catchedError = true; }
-    if (!Belong(followers)) {
+    if (!isNeutralizeErrors && catchedError) {
+        throw exception();
+    }
+    if (isNeutralizeErrors && !Belong(followers)) {
         if (!catchedError) {
             try { lexer->GetIOPtr()->AddError(e006); }
             catch (...) {}
@@ -182,7 +185,10 @@ void CParser::TypesSection(vector<shared_ptr<CToken>> followers)
         }
     }
     catch (...) { catchedError = true; }
-    if (!Belong(followers)) {
+    if (!isNeutralizeErrors && catchedError) {
+        throw exception();
+    }
+    if (isNeutralizeErrors && !Belong(followers)) {
         if (!catchedError) {
             try { lexer->GetIOPtr()->AddError(e006); }
             catch (...) {}
@@ -200,7 +206,10 @@ void CParser::TypeDefinition(vector<shared_ptr<CToken>> followers)
         Type(followers);
     }
     catch (...) { catchedError = true; }
-    if (!Belong(followers)) {
+    if (!isNeutralizeErrors && catchedError) {
+        throw exception();
+    }
+    if (isNeutralizeErrors && !Belong(followers)) {
         if (!catchedError) {
             try { lexer->GetIOPtr()->AddError(e006); }
             catch (...) {}
@@ -216,7 +225,10 @@ void CParser::Type(vector<shared_ptr<CToken>> followers)
         Accept(ttIdent);
     }
     catch (...) { catchedError = true; }
-    if (!Belong(followers)) {
+    if (!isNeutralizeErrors && catchedError) {
+        throw exception();
+    }
+    if (isNeutralizeErrors && !Belong(followers)) {
         if (!catchedError) {
             try { lexer->GetIOPtr()->AddError(e006); }
             catch (...) {}
@@ -245,7 +257,10 @@ void CParser::VariablesSection(vector<shared_ptr<CToken>> followers)
         }
     }
     catch (...) { catchedError = true; }
-    if (!Belong(followers)) {
+    if (!isNeutralizeErrors && catchedError) {
+        throw exception();
+    }
+    if (isNeutralizeErrors && !Belong(followers)) {
         if (!catchedError) {
             try { lexer->GetIOPtr()->AddError(e006); }
             catch (...) {}
@@ -267,7 +282,10 @@ void CParser::SameTypeVars(vector<shared_ptr<CToken>> followers)
         Type(followers);
     }
     catch (...) { catchedError = true; }
-    if (!Belong(followers)) {
+    if (!isNeutralizeErrors && catchedError) {
+        throw exception();
+    }
+    if (isNeutralizeErrors && !Belong(followers)) {
         if (!catchedError) {
             try { lexer->GetIOPtr()->AddError(e006); }
             catch (...) {}
@@ -291,7 +309,10 @@ void CParser::ProceduresSection(vector<shared_ptr<CToken>> followers)
         }
     }
     catch (...) { catchedError = true; }
-    if (!Belong(followers)) {
+    if (!isNeutralizeErrors && catchedError) {
+        throw exception();
+    }
+    if (isNeutralizeErrors && !Belong(followers)) {
         if (!catchedError) {
             try { lexer->GetIOPtr()->AddError(e006); }
             catch (...) {}
@@ -308,7 +329,10 @@ void CParser::ProcedureDefinition(vector<shared_ptr<CToken>> followers)
         Block(followers);
     }
     catch (...) { catchedError = true; }
-    if (!Belong(followers)) {
+    if (!isNeutralizeErrors && catchedError) {
+        throw exception();
+    }
+    if (isNeutralizeErrors && !Belong(followers)) {
         if (!catchedError) {
             try { lexer->GetIOPtr()->AddError(e006); }
             catch (...) {}
@@ -338,7 +362,10 @@ void CParser::ProcedureHeader(vector<shared_ptr<CToken>> followers)
         Accept(semicolonSy);
     }
     catch (...) { catchedError = true; }
-    if (!Belong(followers)) {
+    if (!isNeutralizeErrors && catchedError) {
+        throw exception();
+    }
+    if (isNeutralizeErrors && !Belong(followers)) {
         if (!catchedError) {
             try { lexer->GetIOPtr()->AddError(e006); }
             catch (...) {}
@@ -368,7 +395,10 @@ void CParser::FormalParametersSection(vector<shared_ptr<CToken>> followers)
         }
     }
     catch (...) { catchedError = true; }
-    if (!Belong(followers)) {
+    if (!isNeutralizeErrors && catchedError) {
+        throw exception();
+    }
+    if (isNeutralizeErrors && !Belong(followers)) {
         if (!catchedError) {
             try { lexer->GetIOPtr()->AddError(e006); }
             catch (...) {}
@@ -390,7 +420,10 @@ void CParser::ParametersGroup(vector<shared_ptr<CToken>> followers)
         Accept(ttIdent);
     }
     catch (...) { catchedError = true; }
-    if (!Belong(followers)) {
+    if (!isNeutralizeErrors && catchedError) {
+        throw exception();
+    }
+    if (isNeutralizeErrors && !Belong(followers)) {
         if (!catchedError) {
             try { lexer->GetIOPtr()->AddError(e006); }
             catch (...) {}
@@ -406,7 +439,10 @@ void CParser::OperatorsSection(vector<shared_ptr<CToken>> followers)
         CompOperator(followers);
     }
     catch (...) { catchedError = true; }
-    if (!Belong(followers)) {
+    if (!isNeutralizeErrors && catchedError) {
+        throw exception();
+    }
+    if (isNeutralizeErrors && !Belong(followers)) {
         if (!catchedError) {
             try { lexer->GetIOPtr()->AddError(e006); }
             catch (...) {}
@@ -431,7 +467,10 @@ void CParser::CompOperator(vector<shared_ptr<CToken>> followers)
         Accept(endSy);
     }
     catch (...) { catchedError = true; }
-    if (!Belong(followers)) {
+    if (!isNeutralizeErrors && catchedError) {
+        throw exception();
+    }
+    if (isNeutralizeErrors && !Belong(followers)) {
         if (!catchedError) {
             try { lexer->GetIOPtr()->AddError(e006); }
             catch (...) {}
@@ -456,7 +495,10 @@ void CParser::Operator(vector<shared_ptr<CToken>> followers)
         }
     }
     catch (...) { catchedError = true; }
-    if (!Belong(followers)) {
+    if (!isNeutralizeErrors && catchedError) {
+        throw exception();
+    }
+    if (isNeutralizeErrors && !Belong(followers)) {
         if (!catchedError) {
             try { lexer->GetIOPtr()->AddError(e006); }
             catch (...) {}
@@ -478,7 +520,10 @@ void CParser::SimpleOperator(vector<shared_ptr<CToken>> followers)
         }
     }
     catch (...) { catchedError = true; }
-    if (!Belong(followers)) {
+    if (!isNeutralizeErrors && catchedError) {
+        throw exception();
+    }
+    if (isNeutralizeErrors && !Belong(followers)) {
         if (!catchedError) {
             try { lexer->GetIOPtr()->AddError(e006); }
             catch (...) {}
@@ -495,7 +540,10 @@ void CParser::AssignOperator(vector<shared_ptr<CToken>> followers)
         Expression(followers);
     }
     catch (...) { catchedError = true; }
-    if (!Belong(followers)) {
+    if (!isNeutralizeErrors && catchedError) {
+        throw exception();
+    }
+    if (isNeutralizeErrors && !Belong(followers)) {
         if (!catchedError) {
             try { lexer->GetIOPtr()->AddError(e006); }
             catch (...) {}
@@ -524,7 +572,10 @@ void CParser::Expression(vector<shared_ptr<CToken>> followers)
         }
     }
     catch (...) { catchedError = true; }
-    if (!Belong(followers)) {
+    if (!isNeutralizeErrors && catchedError) {
+        throw exception();
+    }
+    if (isNeutralizeErrors && !Belong(followers)) {
         if (!catchedError) {
             try { lexer->GetIOPtr()->AddError(e006); }
             catch (...) {}
@@ -553,7 +604,10 @@ void CParser::SimpleExpression(vector<shared_ptr<CToken>> followers)
         }
     }
     catch (...) { catchedError = true; }
-    if (!Belong(followers)) {
+    if (!isNeutralizeErrors && catchedError) {
+        throw exception();
+    }
+    if (isNeutralizeErrors && !Belong(followers)) {
         if (!catchedError) {
             try { lexer->GetIOPtr()->AddError(e006); }
             catch (...) {}
@@ -581,7 +635,10 @@ void CParser::Summand(vector<shared_ptr<CToken>> followers)
         }
     }
     catch (...) { catchedError = true; }
-    if (!Belong(followers)) {
+    if (!isNeutralizeErrors && catchedError) {
+        throw exception();
+    }
+    if (isNeutralizeErrors && !Belong(followers)) {
         if (!catchedError) {
             try { lexer->GetIOPtr()->AddError(e006); }
             catch (...) {}
@@ -613,7 +670,10 @@ void CParser::Multiplier(vector<shared_ptr<CToken>> followers)
         }
     }
     catch (...) { catchedError = true; }
-    if (!Belong(followers)) {
+    if (!isNeutralizeErrors && catchedError) {
+        throw exception();
+    }
+    if (isNeutralizeErrors && !Belong(followers)) {
         if (!catchedError) {
             try { lexer->GetIOPtr()->AddError(e006); }
             catch (...) {}
@@ -643,7 +703,10 @@ void CParser::ProcedureOperator(vector<shared_ptr<CToken>> followers)
         }
     }
     catch (...) { catchedError = true; }
-    if (!Belong(followers)) {
+    if (!isNeutralizeErrors && catchedError) {
+        throw exception();
+    }
+    if (isNeutralizeErrors && !Belong(followers)) {
         if (!catchedError) {
             try { lexer->GetIOPtr()->AddError(e006); }
             catch (...) {}
@@ -659,7 +722,10 @@ void CParser::ActualParameter(vector<shared_ptr<CToken>> followers)
         Expression(followers);
     }
     catch (...) { catchedError = true; }
-    if (!Belong(followers)) {
+    if (!isNeutralizeErrors && catchedError) {
+        throw exception();
+    }
+    if (isNeutralizeErrors && !Belong(followers)) {
         if (!catchedError) {
             try { lexer->GetIOPtr()->AddError(e006); }
             catch (...) {}
@@ -692,7 +758,10 @@ void CParser::ComplexOperator(vector<shared_ptr<CToken>> followers)
         }
     }
     catch (...) { catchedError = true; }
-    if (!Belong(followers)) {
+    if (!isNeutralizeErrors && catchedError) {
+        throw exception();
+    }
+    if (isNeutralizeErrors && !Belong(followers)) {
         if (!catchedError) {
             try { lexer->GetIOPtr()->AddError(e006); }
             catch (...) {}
@@ -719,7 +788,10 @@ void CParser::ConditionalOperator(vector<shared_ptr<CToken>> followers)
         }
     }
     catch (...) { catchedError = true; }
-    if (!Belong(followers)) {
+    if (!isNeutralizeErrors && catchedError) {
+        throw exception();
+    }
+    if (isNeutralizeErrors && !Belong(followers)) {
         if (!catchedError) {
             try { lexer->GetIOPtr()->AddError(e006); }
             catch (...) {}
@@ -740,7 +812,10 @@ void CParser::LoopWithPrecondition(vector<shared_ptr<CToken>> followers)
         Operator(followers);
     }
     catch (...) { catchedError = true; }
-    if (!Belong(followers)) {
+    if (!isNeutralizeErrors && catchedError) {
+        throw exception();
+    }
+    if (isNeutralizeErrors && !Belong(followers)) {
         if (!catchedError) {
             try { lexer->GetIOPtr()->AddError(e006); }
             catch (...) {}
@@ -766,7 +841,10 @@ void CParser::LoopWithPostcondition(vector<shared_ptr<CToken>> followers)
         Expression(followers);
     }
     catch (...) { catchedError = true; }
-    if (!Belong(followers)) {
+    if (!isNeutralizeErrors && catchedError) {
+        throw exception();
+    }
+    if (isNeutralizeErrors && !Belong(followers)) {
         if (!catchedError) {
             try { lexer->GetIOPtr()->AddError(e006); }
             catch (...) {}
@@ -794,7 +872,10 @@ void CParser::LoopWithParameter(vector<shared_ptr<CToken>> followers)
         Operator(followers);
     }
     catch (...) { catchedError = true; }
-    if (!Belong(followers)) {
+    if (!isNeutralizeErrors && catchedError) {
+        throw exception();
+    }
+    if (isNeutralizeErrors && !Belong(followers)) {
         if (!catchedError) {
             try { lexer->GetIOPtr()->AddError(e006); }
             catch (...) {}
@@ -814,7 +895,10 @@ void CParser::Dirrection(vector<shared_ptr<CToken>> followers)
         lexer->GetIOPtr()->AddError(e055);
     }
     catch (...) { catchedError = true; }
-    if (!Belong(followers)) {
+    if (!isNeutralizeErrors && catchedError) {
+        throw exception();
+    }
+    if (isNeutralizeErrors && !Belong(followers)) {
         if (!catchedError) {
             try { lexer->GetIOPtr()->AddError(e006); }
             catch (...) {}
@@ -823,7 +907,8 @@ void CParser::Dirrection(vector<shared_ptr<CToken>> followers)
     }
 }
 
-CParser::CParser(shared_ptr<CLexer> _lexer) : lexer(move(_lexer)) { }
+CParser::CParser(shared_ptr<CLexer> _lexer, bool _isNeutralizeErrors) : 
+    lexer(move(_lexer)), isNeutralizeErrors(_isNeutralizeErrors) { }
 
 shared_ptr<CLexer> CParser::GetLexerPtr()
 {

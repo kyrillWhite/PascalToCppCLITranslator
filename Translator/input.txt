@@ -1,30 +1,17 @@
-program ProG;
-	var var a, b, c: integer;
-	    t, v: integer;
-	    age: real;
-	    name: string;
+program pr1;
+type t1  integer;
+procedure pr(arg integer 
+end
+var a :;
 begin
-
-	a := 3000000;
-	//b := 5;
-	c := 4;
-
-	t a := a;
-
-	{a := b;
-	b := t;}
-
-	v := a;
-
-	a := b;
-	(*b := c;
-	c := t;*)
-
-	if 1 >< 2 then
-		a := 1
-	else
-		a := 2;
-
-	name := s'Peter';
-	age := 10.9;
-end.
+  a := 10 +* 10000;
+  if 1 > 0;
+  repeat a := 1;
+  for i := 0;
+  a := 10 + 100000000000;
+  a := 1a;
+  a := $;
+  a := '';
+  a := 123.3.9;
+  a := ';
+  {
