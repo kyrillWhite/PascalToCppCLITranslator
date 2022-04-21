@@ -136,7 +136,7 @@ namespace TranslatorUnitTest
 		TEST_METHOD(Error_e006) {
 			string input = "$";
 
-			Assert::AreEqual(ErrorTestOutput(input).c_str(), "Запрещенный символ (стр 1, стлб 1)\n");
+			Assert::AreEqual(ErrorTestOutput(input).c_str(), "Запрещенный символ (стр 1, стлб 2)\n");
 		}
 
 		TEST_METHOD(Error_e050) {
@@ -148,7 +148,7 @@ namespace TranslatorUnitTest
 		TEST_METHOD(Error_e075) {
 			string input = "\'\'";
 
-			Assert::AreEqual(ErrorTestOutput(input).c_str(), "Ошибка в символьной константе (стр 1, стлб 2)\n");
+			Assert::AreEqual(ErrorTestOutput(input).c_str(), "Ошибка в символьной константе (стр 1, стлб 3)\n");
 		}
 
 		TEST_METHOD(Error_e077) {
@@ -168,7 +168,7 @@ namespace TranslatorUnitTest
 		TEST_METHOD(Error_e201) {
 			string input = "123.3.9";
 			
-			Assert::AreEqual(ErrorTestOutput(input).c_str(), "Ошибка в вещественной константе: должна идти цифра (стр 1, стлб 6)\n");
+			Assert::AreEqual(ErrorTestOutput(input).c_str(), "Ошибка в вещественной константе: должна идти цифра (стр 1, стлб 7)\n");
 		}
 
 		TEST_METHOD(Error_e203) {

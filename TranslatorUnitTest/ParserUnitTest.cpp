@@ -14,7 +14,7 @@ namespace TranslatorUnitTest
 		string ErrorTestOutput(string input) {
 			auto IO = make_shared<CIO>(input);
 			auto lexer = make_shared<CLexer>(IO);
-			auto parser = make_shared<CParser>(lexer);
+			auto parser = make_shared<CParser>(lexer, false);
 
 			try {
 				parser->Evaluate();
@@ -243,7 +243,7 @@ namespace TranslatorUnitTest
 			string correct = ErrorTestOutput(
 				"program pr1;\n"
 				"begin\n"
-				"if 1 > 2 then\n"
+				"if (1 > 2) then\n"
 				"a := a\n"
 				"else\n"
 				"a := 1 + 1\n"

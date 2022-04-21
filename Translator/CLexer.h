@@ -2,7 +2,6 @@
 #include <map>
 
 #include "CIO.h"
-#include "CToken.h"
 #include "CKeyWordToken.h"
 #include "CIdentToken.h"
 #include "CConstToken.h"
