@@ -9,7 +9,8 @@ private:
     EVariantType variantType;
 public:
     CVariant(EVariantType _variantType);
-    EVariantType getVariantType();
+    EVariantType GetVariantType();
     virtual std::string ToString() = 0;
+
     virtual ~CVariant();
 };
