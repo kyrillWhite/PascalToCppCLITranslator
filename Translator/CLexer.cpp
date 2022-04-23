@@ -187,7 +187,7 @@ unique_ptr<CToken> CLexer::GetNextToken()
 
             auto it = keyWords.find(lcWord);
             if (it == keyWords.end()) {
-                return make_unique<CIdentToken>(word);
+                return make_unique<CIdentToken>(lcWord);
             }
             else {
                 return make_unique<CKeyWordToken>(it->second);

@@ -1,17 +1,42 @@
-program pr1;
-type t1  integer;
-procedure pr(arg integer 
-end
-var a :;
+program pr;
+var  i : integer;
+     r : real;
+     b : boolean;
+     s : string;
+procedure p;
+begin end;
+
+procedure write(str : string);
+begin end;
+
 begin
-  a := 10 +* 10000;
-  if 1 > 0;
-  repeat a := 1;
-  for i := 0;
-  a := 10 + 100000000000;
-  a := 1a;
-  a := $;
-  a := '';
-  a := 123.3.9;
-  a := ';
-  {
+     i := 100;
+     i := 10 + 10.0;        // integer := real
+     p;
+     r;                     // r не процедура
+     b := i > 100.0;
+     b := i > s;            // string > integer
+     i := i + 10;
+     i := i + '10';         // integer + string
+     i := i * 10;
+     i := i * '10';         // integer * string
+     i := i / 10;
+     i := i / '10';         // integer / string
+     i := i div 10;
+     i := i div 10.0;       // integer div real
+     b := not i = i;
+     i := not i;            // not integer
+     if true then p;
+     if 10 then p;          // Тип условия - integer
+     repeat p until true;
+     repeat p until 10;     // Тип условия - integer
+     while true do p;
+     while 10 do p;         // Тип условия - integer
+     for i := 0 to 10 do p;
+     for r := 0.0 to 1.0 do p; // Тип параметра - real
+     for i := '1' to '2' do p; // Тип значений - string
+     write('hello!');
+     write('hello!', '1');  // 2 аргумента
+     write(123);            // Тип - integer
+     write(123, 1);         // Тип - integer, 2 арг.
+end.

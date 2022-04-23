@@ -3,7 +3,7 @@
 CVariant::CVariant(EVariantType _variantType) 
     : variantType(_variantType) { }
 
-EVariantType CVariant::getVariantType()
+EVariantType CVariant::GetVariantType()
 {
     return variantType;
 }

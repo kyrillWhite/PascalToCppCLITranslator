@@ -139,36 +139,57 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CBooleanType.cpp" />
     <ClCompile Include="CBooleanVariant.cpp" />
     <ClCompile Include="CConstToken.cpp" />
+    <ClCompile Include="CCustomType.cpp" />
     <ClCompile Include="CEmptyToken.cpp" />
     <ClCompile Include="CError.cpp" />
     <ClCompile Include="CIdentToken.cpp" />
+    <ClCompile Include="CIntType.cpp" />
     <ClCompile Include="CIntVariant.cpp" />
     <ClCompile Include="CIO.cpp" />
     <ClCompile Include="CKeyWordToken.cpp" />
     <ClCompile Include="CLexer.cpp" />
+    <ClCompile Include="CNameType.cpp" />
     <ClCompile Include="CParser.cpp" />
+    <ClCompile Include="CProcedureType.cpp" />
+    <ClCompile Include="CRealType.cpp" />
     <ClCompile Include="CRealVariant.cpp" />
+    <ClCompile Include="CScope.cpp" />
+    <ClCompile Include="CScopes.cpp" />
+    <ClCompile Include="CStringType.cpp" />
     <ClCompile Include="CStringVariant.cpp" />
     <ClCompile Include="CToken.cpp" />
+    <ClCompile Include="CType.cpp" />
     <ClCompile Include="CVariant.cpp" />
+    <ClCompile Include="ETypeType.h" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CBooleanType.h" />
     <ClInclude Include="CBooleanVariant.h" />
     <ClInclude Include="CConstToken.h" />
+    <ClInclude Include="CCustomType.h" />
     <ClInclude Include="CEmptyToken.h" />
     <ClInclude Include="CError.h" />
     <ClInclude Include="CIdentToken.h" />
+    <ClInclude Include="CIntType.h" />
     <ClInclude Include="CIntVariant.h" />
     <ClInclude Include="CIO.h" />
     <ClInclude Include="CKeyWordToken.h" />
     <ClInclude Include="CLexer.h" />
+    <ClInclude Include="CNameType.h" />
     <ClInclude Include="CParser.h" />
+    <ClInclude Include="CProcedureType.h" />
+    <ClInclude Include="CRealType.h" />
     <ClInclude Include="CRealVariant.h" />
+    <ClInclude Include="CScope.h" />
+    <ClInclude Include="CScopes.h" />
+    <ClInclude Include="CStringType.h" />
     <ClInclude Include="CStringVariant.h" />
     <ClInclude Include="CToken.h" />
+    <ClInclude Include="CType.h" />
     <ClInclude Include="CVariant.h" />
     <ClInclude Include="EErrorType.h" />
     <ClInclude Include="EKeyWordType.h" />
