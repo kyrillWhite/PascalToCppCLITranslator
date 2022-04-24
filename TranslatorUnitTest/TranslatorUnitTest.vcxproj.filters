@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Исходные файлы">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Файлы заголовков">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Файлы ресурсов">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Исходные файлы\Tests">
+      <UniqueIdentifier>{923bf9d1-b960-4d79-9014-b6f8c4f370a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Modules">
+      <UniqueIdentifier>{22344e39-e5a1-4a39-b686-ee74704a38c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Modules\IO">
+      <UniqueIdentifier>{0fc23a47-656f-49ce-9701-ec34b5ce7bc4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Modules\Lexer">
+      <UniqueIdentifier>{a5572561-ee76-4038-98e2-63ea81d832b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Modules\Parser">
+      <UniqueIdentifier>{586dd864-57bc-46ba-8f83-948dcd8efdfc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Modules\Parser\CType">
+      <UniqueIdentifier>{ce4dd4e3-438c-4ec2-843e-4bd5aeaa5f8a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="LexerUnitTest.cpp">
+      <Filter>Исходные файлы\Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="IOUnitTest.cpp">
+      <Filter>Исходные файлы\Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Translator\CIO.cpp">
+      <Filter>Исходные файлы\Modules\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Translator\CError.cpp">
+      <Filter>Исходные файлы\Modules\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Translator\CLexer.cpp">
+      <Filter>Исходные файлы\Modules\Lexer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Translator\CToken.cpp">
+      <Filter>Исходные файлы\Modules\Lexer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Translator\CKeyWordToken.cpp">
+      <Filter>Исходные файлы\Modules\Lexer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Translator\CIdentToken.cpp">
+      <Filter>Исходные файлы\Modules\Lexer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Translator\CEmptyToken.cpp">
+      <Filter>Исходные файлы\Modules\Lexer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Translator\CConstToken.cpp">
+      <Filter>Исходные файлы\Modules\Lexer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Translator\CVariant.cpp">
+      <Filter>Исходные файлы\Modules\Lexer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Translator\CStringVariant.cpp">
+      <Filter>Исходные файлы\Modules\Lexer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Translator\CRealVariant.cpp">
+      <Filter>Исходные файлы\Modules\Lexer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Translator\CIntVariant.cpp">
+      <Filter>Исходные файлы\Modules\Lexer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Translator\CBooleanVariant.cpp">
+      <Filter>Исходные файлы\Modules\Lexer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Translator\CParser.cpp">
+      <Filter>Исходные файлы\Modules\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="ParserUnitTest.cpp">
+      <Filter>Исходные файлы\Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Translator\CScope.cpp">
+      <Filter>Исходные файлы\Modules\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Translator\CScopes.cpp">
+      <Filter>Исходные файлы\Modules\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Translator\CBooleanType.cpp">
+      <Filter>Исходные файлы\Modules\Parser\CType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Translator\CCustomType.cpp">
+      <Filter>Исходные файлы\Modules\Parser\CType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Translator\CIntType.cpp">
+      <Filter>Исходные файлы\Modules\Parser\CType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Translator\CNameType.cpp">
+      <Filter>Исходные файлы\Modules\Parser\CType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Translator\CProcedureType.cpp">
+      <Filter>Исходные файлы\Modules\Parser\CType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Translator\CRealType.cpp">
+      <Filter>Исходные файлы\Modules\Parser\CType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Translator\CStringType.cpp">
+      <Filter>Исходные файлы\Modules\Parser\CType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Translator\CType.cpp">
+      <Filter>Исходные файлы\Modules\Parser\CType</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

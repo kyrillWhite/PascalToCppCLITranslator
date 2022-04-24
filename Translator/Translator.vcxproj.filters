@@ -1,22 +1,202 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Исходные файлы">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="Translator">
+      <UniqueIdentifier>{04b8ddcb-a722-409c-b3eb-7b8f5bbaa885}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Файлы заголовков">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    <Filter Include="Translator\Modules">
+      <UniqueIdentifier>{01a3c714-3b4d-44a1-aef3-75c7bd01b9e7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Файлы ресурсов">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="Translator\Modules\IO">
+      <UniqueIdentifier>{2ae87455-be45-46b4-9480-9a72b3302f00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Translator\Modules\Lexer">
+      <UniqueIdentifier>{ee2458a3-5f0a-4745-ba59-a74839774de9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Translator\Modules\Lexer\Token">
+      <UniqueIdentifier>{181d0bc1-4cda-4b17-9fc5-6addd6117985}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Translator\Modules\Lexer\Token\Variant">
+      <UniqueIdentifier>{4aed6a28-dcdf-4efe-b740-bb6e452791b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Translator\Modules\Parser">
+      <UniqueIdentifier>{98206ca5-494b-4159-b90c-4cb181532d33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Translator\Modules\Parser\CType">
+      <UniqueIdentifier>{f5ab8c8e-94d6-4536-8214-2258294a5dd3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Translator\Modules\Generator">
+      <UniqueIdentifier>{4dc4f551-02e9-4875-a023-4f5b9258c18d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Translator.cpp">
-      <Filter>Исходные файлы</Filter>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="CLexer.cpp">
+      <Filter>Translator\Modules\Lexer</Filter>
     </ClCompile>
+    <ClCompile Include="CToken.cpp">
+      <Filter>Translator\Modules\Lexer\Token</Filter>
+    </ClCompile>
+    <ClCompile Include="CIdentToken.cpp">
+      <Filter>Translator\Modules\Lexer\Token</Filter>
+    </ClCompile>
+    <ClCompile Include="CKeyWordToken.cpp">
+      <Filter>Translator\Modules\Lexer\Token</Filter>
+    </ClCompile>
+    <ClCompile Include="CConstToken.cpp">
+      <Filter>Translator\Modules\Lexer\Token</Filter>
+    </ClCompile>
+    <ClCompile Include="CVariant.cpp">
+      <Filter>Translator\Modules\Lexer\Token\Variant</Filter>
+    </ClCompile>
+    <ClCompile Include="CBooleanVariant.cpp">
+      <Filter>Translator\Modules\Lexer\Token\Variant</Filter>
+    </ClCompile>
+    <ClCompile Include="CIntVariant.cpp">
+      <Filter>Translator\Modules\Lexer\Token\Variant</Filter>
+    </ClCompile>
+    <ClCompile Include="CRealVariant.cpp">
+      <Filter>Translator\Modules\Lexer\Token\Variant</Filter>
+    </ClCompile>
+    <ClCompile Include="CStringVariant.cpp">
+      <Filter>Translator\Modules\Lexer\Token\Variant</Filter>
+    </ClCompile>
+    <ClCompile Include="CEmptyToken.cpp">
+      <Filter>Translator\Modules\Lexer\Token</Filter>
+    </ClCompile>
+    <ClCompile Include="CIO.cpp">
+      <Filter>Translator\Modules\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="CError.cpp">
+      <Filter>Translator\Modules\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="CParser.cpp">
+      <Filter>Translator\Modules\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="ETypeType.h">
+      <Filter>Translator\Modules\Parser\CType</Filter>
+    </ClCompile>
+    <ClCompile Include="CBooleanType.cpp">
+      <Filter>Translator\Modules\Parser\CType</Filter>
+    </ClCompile>
+    <ClCompile Include="CCustomType.cpp">
+      <Filter>Translator\Modules\Parser\CType</Filter>
+    </ClCompile>
+    <ClCompile Include="CIntType.cpp">
+      <Filter>Translator\Modules\Parser\CType</Filter>
+    </ClCompile>
+    <ClCompile Include="CNameType.cpp">
+      <Filter>Translator\Modules\Parser\CType</Filter>
+    </ClCompile>
+    <ClCompile Include="CProcedureType.cpp">
+      <Filter>Translator\Modules\Parser\CType</Filter>
+    </ClCompile>
+    <ClCompile Include="CRealType.cpp">
+      <Filter>Translator\Modules\Parser\CType</Filter>
+    </ClCompile>
+    <ClCompile Include="CStringType.cpp">
+      <Filter>Translator\Modules\Parser\CType</Filter>
+    </ClCompile>
+    <ClCompile Include="CType.cpp">
+      <Filter>Translator\Modules\Parser\CType</Filter>
+    </ClCompile>
+    <ClCompile Include="CScope.cpp">
+      <Filter>Translator\Modules\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="CScopes.cpp">
+      <Filter>Translator\Modules\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="CGenerator.cpp">
+      <Filter>Translator\Modules\Generator</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CIO.h">
+      <Filter>Translator\Modules\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="CError.h">
+      <Filter>Translator\Modules\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="EErrorType.h">
+      <Filter>Translator\Modules\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="CLexer.h">
+      <Filter>Translator\Modules\Lexer</Filter>
+    </ClInclude>
+    <ClInclude Include="CToken.h">
+      <Filter>Translator\Modules\Lexer\Token</Filter>
+    </ClInclude>
+    <ClInclude Include="ETokenType.h">
+      <Filter>Translator\Modules\Lexer\Token</Filter>
+    </ClInclude>
+    <ClInclude Include="CIdentToken.h">
+      <Filter>Translator\Modules\Lexer\Token</Filter>
+    </ClInclude>
+    <ClInclude Include="CKeyWordToken.h">
+      <Filter>Translator\Modules\Lexer\Token</Filter>
+    </ClInclude>
+    <ClInclude Include="CConstToken.h">
+      <Filter>Translator\Modules\Lexer\Token</Filter>
+    </ClInclude>
+    <ClInclude Include="EKeyWordType.h">
+      <Filter>Translator\Modules\Lexer\Token</Filter>
+    </ClInclude>
+    <ClInclude Include="CVariant.h">
+      <Filter>Translator\Modules\Lexer\Token\Variant</Filter>
+    </ClInclude>
+    <ClInclude Include="CBooleanVariant.h">
+      <Filter>Translator\Modules\Lexer\Token\Variant</Filter>
+    </ClInclude>
+    <ClInclude Include="CIntVariant.h">
+      <Filter>Translator\Modules\Lexer\Token\Variant</Filter>
+    </ClInclude>
+    <ClInclude Include="CRealVariant.h">
+      <Filter>Translator\Modules\Lexer\Token\Variant</Filter>
+    </ClInclude>
+    <ClInclude Include="CStringVariant.h">
+      <Filter>Translator\Modules\Lexer\Token\Variant</Filter>
+    </ClInclude>
+    <ClInclude Include="CEmptyToken.h">
+      <Filter>Translator\Modules\Lexer\Token</Filter>
+    </ClInclude>
+    <ClInclude Include="EVariantType.h">
+      <Filter>Translator\Modules\Lexer\Token\Variant</Filter>
+    </ClInclude>
+    <ClInclude Include="CParser.h">
+      <Filter>Translator\Modules\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="CScope.h">
+      <Filter>Translator\Modules\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="CScopes.h">
+      <Filter>Translator\Modules\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="CType.h">
+      <Filter>Translator\Modules\Parser\CType</Filter>
+    </ClInclude>
+    <ClInclude Include="CIntType.h">
+      <Filter>Translator\Modules\Parser\CType</Filter>
+    </ClInclude>
+    <ClInclude Include="CBooleanType.h">
+      <Filter>Translator\Modules\Parser\CType</Filter>
+    </ClInclude>
+    <ClInclude Include="CRealType.h">
+      <Filter>Translator\Modules\Parser\CType</Filter>
+    </ClInclude>
+    <ClInclude Include="CCustomType.h">
+      <Filter>Translator\Modules\Parser\CType</Filter>
+    </ClInclude>
+    <ClInclude Include="CNameType.h">
+      <Filter>Translator\Modules\Parser\CType</Filter>
+    </ClInclude>
+    <ClInclude Include="CStringType.h">
+      <Filter>Translator\Modules\Parser\CType</Filter>
+    </ClInclude>
+    <ClInclude Include="CProcedureType.h">
+      <Filter>Translator\Modules\Parser\CType</Filter>
+    </ClInclude>
+    <ClInclude Include="CGenerator.h">
+      <Filter>Translator\Modules\Generator</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
