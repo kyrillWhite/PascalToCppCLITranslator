@@ -35,4 +35,5 @@ public:
     void PrintErrors();
     bool IsEndOfInput();
     std::string GetOutputString();
+    bool HasErrors();
 };

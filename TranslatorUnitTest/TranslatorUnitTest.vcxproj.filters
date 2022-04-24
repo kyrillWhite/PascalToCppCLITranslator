@@ -28,6 +28,9 @@
     <Filter Include="Исходные файлы\Modules\Parser">
       <UniqueIdentifier>{586dd864-57bc-46ba-8f83-948dcd8efdfc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\Modules\Parser\CType">
+      <UniqueIdentifier>{ce4dd4e3-438c-4ec2-843e-4bd5aeaa5f8a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LexerUnitTest.cpp">
@@ -80,6 +83,36 @@
     </ClCompile>
     <ClCompile Include="ParserUnitTest.cpp">
       <Filter>Исходные файлы\Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Translator\CScope.cpp">
+      <Filter>Исходные файлы\Modules\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Translator\CScopes.cpp">
+      <Filter>Исходные файлы\Modules\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Translator\CBooleanType.cpp">
+      <Filter>Исходные файлы\Modules\Parser\CType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Translator\CCustomType.cpp">
+      <Filter>Исходные файлы\Modules\Parser\CType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Translator\CIntType.cpp">
+      <Filter>Исходные файлы\Modules\Parser\CType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Translator\CNameType.cpp">
+      <Filter>Исходные файлы\Modules\Parser\CType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Translator\CProcedureType.cpp">
+      <Filter>Исходные файлы\Modules\Parser\CType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Translator\CRealType.cpp">
+      <Filter>Исходные файлы\Modules\Parser\CType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Translator\CStringType.cpp">
+      <Filter>Исходные файлы\Modules\Parser\CType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Translator\CType.cpp">
+      <Filter>Исходные файлы\Modules\Parser\CType</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
