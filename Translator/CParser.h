@@ -1,6 +1,7 @@
 #pragma once
 #include "CLexer.h"
 #include "CScopes.h"
+#include "CGenerator.h"
 
 class CParser
 {
@@ -8,6 +9,7 @@ private:
     std::unique_ptr<CToken> curToken;
     std::unique_ptr<CScopes> scopes;
     std::shared_ptr<CLexer> lexer;
+    std::shared_ptr<CGenerator> generator;
     std::map<std::string, ETypeType> typeNames;
 
     bool isNeutralizeErrors;
@@ -43,7 +45,8 @@ private:
     bool EqualKeyWord(EKeyWordType kwType);
 
     void Program(std::vector<std::shared_ptr<CToken>> followers = {});                   // Программа
-    void Block(std::vector<std::shared_ptr<CToken>> followers = {});                     // Блок
+    void Block(std::string callingName, 
+        std::vector<std::shared_ptr<CToken>> followers = {});                     // Блок
     void TypesSection(std::vector<std::shared_ptr<CToken>> followers = {});              // Раздел типов
     void TypeDefinition(std::vector<std::shared_ptr<CToken>> followers = {});            // Определение типа
     void Type(std::vector<std::shared_ptr<CToken>> followers = {});                      // Тип
@@ -54,7 +57,7 @@ private:
     std::vector<std::shared_ptr<CType>> 
         ProcedureHeader(std::vector<std::shared_ptr<CToken>> followers = {});            // Заголовок процедуры
     std::vector<std::shared_ptr<CType>> 
-        ParametersGroup(std::vector<std::shared_ptr<CToken>> followers = {});            // Группа параметров
+        ParametersGroup(bool isRef, std::vector<std::shared_ptr<CToken>> followers = {});// Группа параметров
     std::vector<std::shared_ptr<CType>> 
         FormalParametersSection(std::vector<std::shared_ptr<CToken>> followers = {});    // Раздел формальных параметров
     void OperatorsSection(std::vector<std::shared_ptr<CToken>> followers = {});          // Раздел операторов
@@ -80,10 +83,10 @@ private:
     void LoopWithPrecondition(std::vector<std::shared_ptr<CToken>> followers = {});      // Цикл c предусловием 
     void LoopWithPostcondition(std::vector<std::shared_ptr<CToken>> followers = {});     // Цикл c постусловием 
     void LoopWithParameter(std::vector<std::shared_ptr<CToken>> followers = {});         // Цикл c параметром 
-    void Dirrection(std::vector<std::shared_ptr<CToken>> followers = {});                // Направление
+    bool Dirrection(std::vector<std::shared_ptr<CToken>> followers = {});                // Направление
 
 public:
-    CParser(std::shared_ptr<CLexer> _lexer, bool _isNeutralizeErrors = true);
+    CParser(std::shared_ptr<CLexer> _lexer, std::shared_ptr<CGenerator> _generator, bool _isNeutralizeErrors = true);
     std::shared_ptr<CLexer> GetLexerPtr();
     void Evaluate();
 };

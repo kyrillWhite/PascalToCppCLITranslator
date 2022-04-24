@@ -85,3 +85,8 @@ std::string CIO::GetOutputString()
     }
     return "";
 }
+
+bool CIO::HasErrors()
+{
+    return errors.size() > 0;
+}

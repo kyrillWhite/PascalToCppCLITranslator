@@ -25,6 +25,9 @@
     <Filter Include="Translator\Modules\Parser\CType">
       <UniqueIdentifier>{f5ab8c8e-94d6-4536-8214-2258294a5dd3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Translator\Modules\Generator">
+      <UniqueIdentifier>{4dc4f551-02e9-4875-a023-4f5b9258c18d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -70,38 +73,41 @@
     <ClCompile Include="CParser.cpp">
       <Filter>Translator\Modules\Parser</Filter>
     </ClCompile>
-    <ClCompile Include="CScope.cpp">
-      <Filter>Translator\Modules\Parser</Filter>
-    </ClCompile>
-    <ClCompile Include="CScopes.cpp">
-      <Filter>Translator\Modules\Parser</Filter>
-    </ClCompile>
-    <ClCompile Include="CType.cpp">
-      <Filter>Translator\Modules\Parser\CType</Filter>
-    </ClCompile>
-    <ClCompile Include="CIntType.cpp">
-      <Filter>Translator\Modules\Parser\CType</Filter>
-    </ClCompile>
     <ClCompile Include="ETypeType.h">
       <Filter>Translator\Modules\Parser\CType</Filter>
     </ClCompile>
     <ClCompile Include="CBooleanType.cpp">
       <Filter>Translator\Modules\Parser\CType</Filter>
     </ClCompile>
-    <ClCompile Include="CRealType.cpp">
+    <ClCompile Include="CCustomType.cpp">
       <Filter>Translator\Modules\Parser\CType</Filter>
     </ClCompile>
-    <ClCompile Include="CCustomType.cpp">
+    <ClCompile Include="CIntType.cpp">
       <Filter>Translator\Modules\Parser\CType</Filter>
     </ClCompile>
     <ClCompile Include="CNameType.cpp">
       <Filter>Translator\Modules\Parser\CType</Filter>
     </ClCompile>
+    <ClCompile Include="CProcedureType.cpp">
+      <Filter>Translator\Modules\Parser\CType</Filter>
+    </ClCompile>
+    <ClCompile Include="CRealType.cpp">
+      <Filter>Translator\Modules\Parser\CType</Filter>
+    </ClCompile>
     <ClCompile Include="CStringType.cpp">
       <Filter>Translator\Modules\Parser\CType</Filter>
     </ClCompile>
-    <ClCompile Include="CProcedureType.cpp">
+    <ClCompile Include="CType.cpp">
       <Filter>Translator\Modules\Parser\CType</Filter>
+    </ClCompile>
+    <ClCompile Include="CScope.cpp">
+      <Filter>Translator\Modules\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="CScopes.cpp">
+      <Filter>Translator\Modules\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="CGenerator.cpp">
+      <Filter>Translator\Modules\Generator</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -188,6 +194,9 @@
     </ClInclude>
     <ClInclude Include="CProcedureType.h">
       <Filter>Translator\Modules\Parser\CType</Filter>
+    </ClInclude>
+    <ClInclude Include="CGenerator.h">
+      <Filter>Translator\Modules\Generator</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

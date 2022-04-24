@@ -145,6 +145,7 @@
     <ClCompile Include="CCustomType.cpp" />
     <ClCompile Include="CEmptyToken.cpp" />
     <ClCompile Include="CError.cpp" />
+    <ClCompile Include="CGenerator.cpp" />
     <ClCompile Include="CIdentToken.cpp" />
     <ClCompile Include="CIntType.cpp" />
     <ClCompile Include="CIntVariant.cpp" />
@@ -173,6 +174,7 @@
     <ClInclude Include="CCustomType.h" />
     <ClInclude Include="CEmptyToken.h" />
     <ClInclude Include="CError.h" />
+    <ClInclude Include="CGenerator.h" />
     <ClInclude Include="CIdentToken.h" />
     <ClInclude Include="CIntType.h" />
     <ClInclude Include="CIntVariant.h" />

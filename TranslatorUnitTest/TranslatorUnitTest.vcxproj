@@ -156,19 +156,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\Translator\CBooleanType.cpp" />
     <ClCompile Include="..\Translator\CBooleanVariant.cpp" />
     <ClCompile Include="..\Translator\CConstToken.cpp" />
+    <ClCompile Include="..\Translator\CCustomType.cpp" />
     <ClCompile Include="..\Translator\CEmptyToken.cpp" />
     <ClCompile Include="..\Translator\CError.cpp" />
     <ClCompile Include="..\Translator\CIdentToken.cpp" />
+    <ClCompile Include="..\Translator\CIntType.cpp" />
     <ClCompile Include="..\Translator\CIntVariant.cpp" />
     <ClCompile Include="..\Translator\CIO.cpp" />
     <ClCompile Include="..\Translator\CKeyWordToken.cpp" />
     <ClCompile Include="..\Translator\CLexer.cpp" />
+    <ClCompile Include="..\Translator\CNameType.cpp" />
     <ClCompile Include="..\Translator\CParser.cpp" />
+    <ClCompile Include="..\Translator\CProcedureType.cpp" />
+    <ClCompile Include="..\Translator\CRealType.cpp" />
     <ClCompile Include="..\Translator\CRealVariant.cpp" />
+    <ClCompile Include="..\Translator\CScope.cpp" />
+    <ClCompile Include="..\Translator\CScopes.cpp" />
+    <ClCompile Include="..\Translator\CStringType.cpp" />
     <ClCompile Include="..\Translator\CStringVariant.cpp" />
     <ClCompile Include="..\Translator\CToken.cpp" />
+    <ClCompile Include="..\Translator\CType.cpp" />
     <ClCompile Include="..\Translator\CVariant.cpp" />
     <ClCompile Include="LexerUnitTest.cpp" />
     <ClCompile Include="IOUnitTest.cpp" />

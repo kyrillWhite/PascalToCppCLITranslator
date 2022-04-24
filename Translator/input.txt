@@ -1,42 +1,22 @@
 program pr;
-var  i : integer;
-     r : real;
-     b : boolean;
-     s : string;
-procedure p;
-begin end;
-
-procedure write(str : string);
-begin end;
+var i : integer;
 
 begin
      i := 100;
-     i := 10 + 10.0;        // integer := real
-     p;
-     r;                     // r не процедура
-     b := i > 100.0;
-     b := i > s;            // string > integer
-     i := i + 10;
-     i := i + '10';         // integer + string
-     i := i * 10;
-     i := i * '10';         // integer * string
-     i := i / 10;
-     i := i / '10';         // integer / string
-     i := i div 10;
-     i := i div 10.0;       // integer div real
-     b := not i = i;
-     i := not i;            // not integer
-     if true then p;
-     if 10 then p;          // Тип условия - integer
-     repeat p until true;
-     repeat p until 10;     // Тип условия - integer
-     while true do p;
-     while 10 do p;         // Тип условия - integer
-     for i := 0 to 10 do p;
-     for r := 0.0 to 1.0 do p; // Тип параметра - real
-     for i := '1' to '2' do p; // Тип значений - string
-     write('hello!');
-     write('hello!', '1');  // 2 аргумента
-     write(123);            // Тип - integer
-     write(123, 1);         // Тип - integer, 2 арг.
+     begin
+          if i = 100 then
+               write(1)
+          else
+               write(0);
+     end;
+     while i > 95 do
+     begin
+          write(i);
+          i := i - 1;
+     end;
+     repeat
+          i := 10;
+     until i <> 10;
+     for i := 5 downto 0 do
+          write(i);
 end.

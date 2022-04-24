@@ -165,6 +165,10 @@ void CParser::AcceptProcedureCallTypes(shared_ptr<CType> proc, vector<shared_ptr
             try { lexer->GetIOPtr()->AddError(e199); }
             catch (...) {}
         }
+        if (procAttribute->GetRef() && !attribute->IsIdent()) {
+            try { lexer->GetIOPtr()->AddError(e215); }
+            catch (...) {}
+        }
     }
 }
 
@@ -294,8 +298,32 @@ bool CParser::IsRelOper()
         return false;
     }
     auto kwType = dynamic_cast<CKeyWordToken*>(curToken.get())->GetKeyWordType();
-    return kwType == equalSy || kwType == laterSy || kwType == greaterSy ||
+    bool is = kwType == equalSy || kwType == laterSy || kwType == greaterSy ||
         kwType == laterequalSy || kwType == greaterequalSy || kwType == latergreaterSy;
+    if (is) {
+        switch (kwType)
+        {
+        case equalSy:
+            generator->Equal();
+            break;
+        case laterSy:
+            generator->Later();
+            break;
+        case greaterSy:
+            generator->Greater();
+            break;
+        case laterequalSy:
+            generator->Laterequal();
+            break;
+        case greaterequalSy:
+            generator->Greaterequal();
+            break;
+        case latergreaterSy:
+            generator->NotEqual();
+            break;
+        }
+    }
+    return is;
 }
 
 bool CParser::IsSign()
@@ -304,7 +332,19 @@ bool CParser::IsSign()
         return false;
     }
     auto kwType = dynamic_cast<CKeyWordToken*>(curToken.get())->GetKeyWordType();
-    return kwType == plusSy || kwType == minusSy;
+    bool is = kwType == plusSy || kwType == minusSy;
+    if (is) {
+        switch (kwType)
+        {
+        case plusSy:
+            generator->Plus();
+            break;
+        case minusSy:
+            generator->Minus();
+            break;
+        }
+    }
+    return is;
 }
 
 bool CParser::IsAddOper()
@@ -313,7 +353,22 @@ bool CParser::IsAddOper()
         return false;
     }
     auto kwType = dynamic_cast<CKeyWordToken*>(curToken.get())->GetKeyWordType();
-    return kwType == plusSy || kwType == minusSy || kwType == orSy;
+    bool is = kwType == plusSy || kwType == minusSy || kwType == orSy;
+    if (is) {
+        switch (kwType)
+        {
+        case plusSy:
+            generator->Add();
+            break;
+        case minusSy:
+            generator->Sub();
+            break;
+        case orSy:
+            generator->Or();
+            break;
+        }
+    }
+    return is;
 }
 
 bool CParser::IsMultOper()
@@ -322,8 +377,29 @@ bool CParser::IsMultOper()
         return false;
     }
     auto kwType = dynamic_cast<CKeyWordToken*>(curToken.get())->GetKeyWordType();
-    return kwType == starSy || kwType == slashSy || 
+    bool is = kwType == starSy || kwType == slashSy ||
         kwType == divSy || kwType == modSy || kwType == andSy;
+    if (is) {
+        switch (kwType)
+        {
+        case starSy:
+            generator->Mult();
+            break;
+        case slashSy:
+            generator->Div();
+            break;
+        case divSy:
+            generator->Div();
+            break;
+        case modSy:
+            generator->Mod();
+            break;
+        case andSy:
+            generator->And();
+            break;
+        }
+    }
+    return is;
 }
 
 bool CParser::EqualKeyWord(EKeyWordType kwType)
@@ -334,24 +410,29 @@ bool CParser::EqualKeyWord(EKeyWordType kwType)
 
 void CParser::Program(vector<shared_ptr<CToken>> followers)
 {
+    string progName;
     scopes->Push(make_shared<CScope>());
+    auto writeType = make_shared<CProcedureType>();
+    writeType->SetAttributes({ make_shared<CNameType>() });
+    AddIdent("write", writeType);
     bool catchedError = false;
     auto blockFollowers = followers;
     blockFollowers.push_back(make_shared<CKeyWordToken>(pointSy));
     try {
         Accept(programSy);
-        string identName = GetIdentName();
+        progName = GetIdentName();
         Accept(ttIdent); 
-        AddIdent(identName, make_shared<CNameType>());
+        AddIdent(progName, make_shared<CNameType>());
         Accept(semicolonSy);
-        Block(blockFollowers);
+        Block(progName, blockFollowers);
         Accept(pointSy);
     }
     catch (...) { }
     scopes->Pop();
+    generator->MainFunc(progName);
 }
 
-void CParser::Block(vector<shared_ptr<CToken>> followers)
+void CParser::Block(string callingName, vector<shared_ptr<CToken>> followers)
 {
     bool catchedError = false;
     auto typesSectionFollowers = followers;
@@ -366,10 +447,13 @@ void CParser::Block(vector<shared_ptr<CToken>> followers)
     auto proceduresSectionFollowers = followers;
     proceduresSectionFollowers.push_back(make_shared<CKeyWordToken>(beginSy));
     try {
+        generator->OpenBlock(callingName);
         TypesSection(typesSectionFollowers);
         VariablesSection(variablesSectionFollowers);
         ProceduresSection(proceduresSectionFollowers);
+        generator->OperatorSectionOpen(callingName);
         OperatorsSection(followers);
+        generator->CloseBlock();
     }
     catch (...) { catchedError = true; }
     if (!isNeutralizeErrors && catchedError) {
@@ -509,6 +593,7 @@ void CParser::SameTypeVars(vector<shared_ptr<CToken>> followers)
         for (string name : names) {
             AddIdent(name, type);
         }
+        generator->SameTypeVars(names, type);
         Type(followers);
     }
     catch (...) { catchedError = true; }
@@ -567,7 +652,7 @@ void CParser::ProcedureDefinition(vector<shared_ptr<CToken>> followers)
         scopes->Push(make_shared<CScope>());
         auto parametersTypes = ProcedureHeader(procedureHeaderFollowers);
         procedureType->SetAttributes(parametersTypes);
-        Block(followers);
+        Block(identName, followers);
         scopes->Pop();
     }
     catch (...) { catchedError = true; }
@@ -596,13 +681,15 @@ vector<shared_ptr<CType>> CParser::ProcedureHeader(vector<shared_ptr<CToken>> fo
             auto sectionTypes = FormalParametersSection(formalParametersSectionFollowers);
             parametersTypes.insert(parametersTypes.end(), sectionTypes.begin(), sectionTypes.end());
             while (EqualKeyWord(semicolonSy)) {
-                Accept(semicolonSy);        
+                Accept(semicolonSy);
+                generator->ParameterDivider();
                 sectionTypes = FormalParametersSection(formalParametersSectionFollowers);
                 parametersTypes.insert(parametersTypes.end(), sectionTypes.begin(), sectionTypes.end());
             }
             Accept(rightparSy);
         }
         Accept(semicolonSy);
+        generator->ProcedureHeaderPush();
     }
     catch (...) { catchedError = true; }
     if (!isNeutralizeErrors && catchedError) {
@@ -625,10 +712,13 @@ vector<shared_ptr<CType>> CParser::FormalParametersSection(vector<shared_ptr<CTo
     try {
         if (EqualKeyWord(varSy)) {
             GetNextToken();
-            parametersTypes = ParametersGroup(followers);
+            parametersTypes = ParametersGroup(true, followers);
+            for (auto parType : parametersTypes) {
+                parType->SetRef(true);
+            }
         }
         else {
-            parametersTypes = ParametersGroup(followers);
+            parametersTypes = ParametersGroup(false, followers);
         }
     }
     catch (...) { catchedError = true; }
@@ -645,7 +735,7 @@ vector<shared_ptr<CType>> CParser::FormalParametersSection(vector<shared_ptr<CTo
     return parametersTypes;
 }
 
-vector<shared_ptr<CType>> CParser::ParametersGroup(vector<shared_ptr<CToken>> followers)
+vector<shared_ptr<CType>> CParser::ParametersGroup(bool isRef, vector<shared_ptr<CToken>> followers)
 {
     vector<shared_ptr<CType>> parametersTypes;
     bool catchedError = false;
@@ -660,9 +750,13 @@ vector<shared_ptr<CType>> CParser::ParametersGroup(vector<shared_ptr<CToken>> fo
         }
         Accept(colonSy);
         auto type = GetTypeByName(curToken->ToString());
-        for (string name : names) {
-            AddIdent(name, type);
+        for (int i = 0; i < names.size(); i++) {
+            AddIdent(names[i], type);
             parametersTypes.push_back(type);
+            generator->ProcedureParameter(names[i], type, isRef);
+            if (i != names.size() - 1) {
+                generator->ParameterDivider();
+            }
         }
         Type(followers);
     }
@@ -707,12 +801,14 @@ void CParser::CompOperator(vector<shared_ptr<CToken>> followers)
     operatorFollowers.push_back(make_shared<CKeyWordToken>(endSy));
     try {
         Accept(beginSy);
+        generator->CompOperatorOpen();
         Operator(operatorFollowers);
         while (EqualKeyWord(semicolonSy)) {
             GetNextToken();
             Operator(operatorFollowers);
         }
         Accept(endSy);
+        generator->CompOperatorClose();
     }
     catch (...) { catchedError = true; }
     if (!isNeutralizeErrors && catchedError) {
@@ -733,6 +829,7 @@ void CParser::Operator(vector<shared_ptr<CToken>> followers)
     try {
         if (curToken->GetType() == ttIdent) {
             SimpleOperator(followers);
+            generator->OperatorClose();
         }
         else if (curToken->GetType() == ttKeyword) {
             auto kwType = dynamic_cast<CKeyWordToken*>(curToken.get())->GetKeyWordType();
@@ -760,12 +857,14 @@ void CParser::SimpleOperator(vector<shared_ptr<CToken>> followers)
     bool catchedError = false;
     try {
         auto type = DeclaringCheckIdent();
+        string name = curToken->ToString();
         Accept(ttIdent);
         if (EqualKeyWord(assignSy)) {
             if (!IsVariableType(type)) {
                 try { lexer->GetIOPtr()->AddError(e100); }
                 catch (...) {}
             }
+            generator->Assign(name);
             auto nType = AssignOperator(followers);
             if (!IsEqualTypes(type, nType)) {
                 try { lexer->GetIOPtr()->AddError(e182); }
@@ -777,8 +876,20 @@ void CParser::SimpleOperator(vector<shared_ptr<CToken>> followers)
                 try { lexer->GetIOPtr()->AddError(e100); }
                 catch (...) {}
             }
+            generator->CallProcedure(name);
+            generator->LeftPar();
+
             auto attributes = ProcedureOperator(followers);
-            AcceptProcedureCallTypes(type, attributes);
+            if (name == "write") {
+                if (attributes.size() != 1) {
+                    try { lexer->GetIOPtr()->AddError(e198); }
+                    catch (...) { }
+                }
+            }
+            else {
+                AcceptProcedureCallTypes(type, attributes);
+            }
+            generator->RightPar();
         }
     }
     catch (...) { catchedError = true; }
@@ -832,6 +943,7 @@ shared_ptr<CType> CParser::Expression(vector<shared_ptr<CToken>> followers)
     try {
         type = SimpleExpression(simpleExpressionFollowers);
         if (IsRelOper()) {
+            type->SetIsIdent(false);
             GetNextToken();
             auto nType = SimpleExpression(followers);
             if (!IsScalarTypes(type, nType) && !IsStringTypes(type, nType)) {
@@ -876,7 +988,11 @@ shared_ptr<CType> CParser::SimpleExpression(vector<shared_ptr<CToken>> followers
             try { lexer->GetIOPtr()->AddError(e184); }
             catch (...) {}
         }
+        if (hasSign) {
+            type->SetIsIdent(false);
+        }
         while (IsAddOper()) {
+            type->SetIsIdent(false);
             auto operType = dynamic_cast<CKeyWordToken*>(curToken.get())->GetKeyWordType();
             GetNextToken();
             auto nType = Summand(summandFollowers);
@@ -926,6 +1042,7 @@ shared_ptr<CType> CParser::Summand(vector<shared_ptr<CToken>> followers)
     try {
         type = Multiplier(multipliertFollowers);
         while (IsMultOper()) {
+            type->SetIsIdent(false);
             auto operType = dynamic_cast<CKeyWordToken*>(curToken.get())->GetKeyWordType();
             GetNextToken();
             auto nType = Multiplier(multipliertFollowers);
@@ -980,24 +1097,30 @@ shared_ptr<CType> CParser::Multiplier(vector<shared_ptr<CToken>> followers)
     expressionFollowers.push_back(make_shared<CKeyWordToken>(rightparSy));
     try {
         if (curToken->GetType() == ttIdent) {
-            type = scopes->GetCurrent()->LookupIdent(curToken->ToString());
+            type = scopes->GetCurrent()->LookupIdent(curToken->ToString()); 
+            type->SetIsIdent(true);
             if (!IsVariableType(type)) {
                 try { lexer->GetIOPtr()->AddError(e100); }
                 catch (...) {}
             }
             DeclaringCheckIdent();
+            generator->Ident(curToken->ToString());
             GetNextToken();
         }
         else if (curToken->GetType() == ttConst) {
             type = GetConstantType();
+            generator->Const(curToken->ToString(), type);
             GetNextToken();
         }
         else if (EqualKeyWord(leftparSy)) {
             GetNextToken();
+            generator->LeftPar();
             type = Expression(expressionFollowers);
             Accept(rightparSy);
+            generator->RightPar();
         }
         else if (EqualKeyWord(notSy)) {
+            generator->Not();
             GetNextToken();
             type = Multiplier(followers);
             if (!IsBooleanType(type)) {
@@ -1037,6 +1160,7 @@ vector<shared_ptr<CType>> CParser::ProcedureOperator(vector<shared_ptr<CToken>> 
             attributes.push_back(attriblute);
             while (EqualKeyWord(commaSy)) {
                 GetNextToken();
+                generator->ParameterDividerCallProc();
                 auto attriblute = ActualParameter(actualParameterFollowers);
                 attributes.push_back(attriblute);
             }
@@ -1126,7 +1250,10 @@ void CParser::ConditionalOperator(vector<shared_ptr<CToken>> followers)
     operatorFollowers.push_back(make_shared<CKeyWordToken>(elseSy));
     try {
         GetNextToken();
+        generator->If();
+        generator->LeftPar();
         auto type = Expression(expressionFollowers);
+        generator->RightPar();
         if (!IsBooleanType(type)) {
             try { lexer->GetIOPtr()->AddError(e135); }
             catch (...) {}
@@ -1134,6 +1261,7 @@ void CParser::ConditionalOperator(vector<shared_ptr<CToken>> followers)
         Accept(thenSy);
         Operator(operatorFollowers);
         if (EqualKeyWord(elseSy)) {
+            generator->Else();
             GetNextToken();
             Operator(followers);
         }
@@ -1158,7 +1286,10 @@ void CParser::LoopWithPrecondition(vector<shared_ptr<CToken>> followers)
     expressionFollowers.push_back(make_shared<CKeyWordToken>(doSy));
     try {
         GetNextToken();
+        generator->LoopWithPrecondition();
+        generator->LeftPar();
         auto type = Expression(expressionFollowers);
+        generator->RightPar();
         if (!IsBooleanType(type)) {
             try { lexer->GetIOPtr()->AddError(e135); }
             catch (...) {}
@@ -1186,14 +1317,19 @@ void CParser::LoopWithPostcondition(vector<shared_ptr<CToken>> followers)
     operatorFollowers.push_back(make_shared<CKeyWordToken>(semicolonSy));
     operatorFollowers.push_back(make_shared<CKeyWordToken>(untilSy));
     try {
-        GetNextToken();
+        GetNextToken(); 
+        generator->LoopWithPostcondition();
         Operator(operatorFollowers);
         while (EqualKeyWord(semicolonSy)) {
             GetNextToken();
             Operator(operatorFollowers);
         }
         Accept(untilSy);
+        generator->LoopWithPrecondition();
+        generator->LeftPar();
         auto type = Expression(followers);
+        generator->RightPar();
+        generator->OperatorClose();
         if (!IsBooleanType(type)) {
             try { lexer->GetIOPtr()->AddError(e135); }
             catch (...) {}
@@ -1227,19 +1363,23 @@ void CParser::LoopWithParameter(vector<shared_ptr<CToken>> followers)
             try { lexer->GetIOPtr()->AddError(e143); }
             catch (...) {}
         }
+        string parameter = curToken->ToString();
         Accept(ttIdent);
         Accept(assignSy);
+        generator->ForInit(parameter);
         auto fType = Expression(expressionFollowers1);
         if (!IsEqualTypes(type, fType)) {
             try { lexer->GetIOPtr()->AddError(e182); }
             catch (...) {}
         }
-        Dirrection(followers);
+        bool dir = Dirrection(followers);
+        generator->ForCondition(parameter, dir);
         auto tType = Expression(expressionFollowers2);
         if (!IsEqualTypes(type, tType)) {
             try { lexer->GetIOPtr()->AddError(e182); }
             catch (...) {}
         }
+        generator->ForIteration(parameter, dir);
         Accept(doSy);
         Operator(followers);
     }
@@ -1256,13 +1396,17 @@ void CParser::LoopWithParameter(vector<shared_ptr<CToken>> followers)
     }
 }
 
-void CParser::Dirrection(vector<shared_ptr<CToken>> followers)
+bool CParser::Dirrection(vector<shared_ptr<CToken>> followers)
 {
     bool catchedError = false;
     try {
-        if (EqualKeyWord(toSy) || EqualKeyWord(downtoSy)) {
+        if (EqualKeyWord(toSy)) {
             GetNextToken();
-            return;
+            return true;
+        }
+        else if (EqualKeyWord(downtoSy)) {
+            GetNextToken();
+            return false;
         }
         lexer->GetIOPtr()->AddError(e055);
     }
@@ -1277,10 +1421,11 @@ void CParser::Dirrection(vector<shared_ptr<CToken>> followers)
         }
         SkipTo(followers);
     }
+    return false;
 }
 
-CParser::CParser(shared_ptr<CLexer> _lexer, bool _isNeutralizeErrors) : 
-    lexer(move(_lexer)), isNeutralizeErrors(_isNeutralizeErrors) 
+CParser::CParser(shared_ptr<CLexer> _lexer, std::shared_ptr<CGenerator> _generator, bool _isNeutralizeErrors) :
+    lexer(_lexer), generator(_generator), isNeutralizeErrors(_isNeutralizeErrors)
 {
     scopes = make_unique<CScopes>();
     typeNames =
